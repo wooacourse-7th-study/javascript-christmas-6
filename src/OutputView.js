@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { INFORMATION_MESSAGE } from "./constants/index.js";
+import { INFORMATION_MESSAGE, TITLE_MESSAGE } from "./constants/index.js";
 
 const OutputView = Object.freeze({
   // 기본 안내 메시지
@@ -9,6 +9,11 @@ const OutputView = Object.freeze({
 
   eventMessage() {
     Console.print(INFORMATION_MESSAGE.EVENT);
+  },
+
+  printMenus(orderMenu) {
+    Console.print(TITLE_MESSAGE.MENU);
+    Console.print(orderMenu.map(({ menu, count }) => `${menu} ${count}개`).join("\n"));
   },
 });
 

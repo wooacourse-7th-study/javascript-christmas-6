@@ -9,13 +9,13 @@ export const INPUT_MESSAGE = Object.freeze({
 });
 
 export const TITLE_MESSAGE = Object.freeze({
-  MENU: "\n<주문 메뉴>\n",
-  ORIGINAL_PRICE: "\n<할인 전 총주문 금액>\n",
-  GIFT: "\n<증정 메뉴>\n",
-  BENEFIT: "\n<혜택 내역>\n",
-  BENEFIT_PRICE: "\n<총혜택 내역>\n",
-  FINAL_PRICE: "\n<할인 후 예상 결제 금액>\n",
-  EVENT_BADGE: "\n<12월 이벤트 배지>\n",
+  MENU: "\n<주문 메뉴>",
+  ORIGINAL_PRICE: "\n<할인 전 총주문 금액>",
+  GIFT: "\n<증정 메뉴>",
+  BENEFIT: "\n<혜택 내역>",
+  BENEFIT_PRICE: "\n<총혜택 내역>",
+  FINAL_PRICE: "\n<할인 후 예상 결제 금액>",
+  EVENT_BADGE: "\n<12월 이벤트 배지>",
 });
 
 export const ERROR_MESSAGE = Object.freeze({
