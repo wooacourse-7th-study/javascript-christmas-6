@@ -1,5 +1,5 @@
 export const INFORMATION_MESSAGE = Object.freeze({
-  GREETING: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.\n",
+  GREETING: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.",
   EVENT: "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n",
 });
 
@@ -41,3 +41,20 @@ export const DECEMBER = Object.freeze({
 
 export const MAX_COUNT = 20;
 export const NOTHING_MESSAGE = "없음";
+
+export const MENUS = Object.freeze({
+  양송이수프: 6000,
+  타파스: 5500,
+  시저샐러드: 8000,
+  티본스테이크: 55000,
+  바베큐립: 54000,
+  해산물파스타: 35000,
+  크리스마스파스타: 25000,
+  초코케이크: 15000,
+  아이스크림: 5000,
+  제로콜라: 3000,
+  레드와인: 60000,
+  샴페인: 25000,
+});
+
+export const DRINKS = ["제로콜라", "레드와인", "샴페인"];
