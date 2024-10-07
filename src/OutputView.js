@@ -1,7 +1,15 @@
-export default OutputView = Object.freeze({
-  printMenu() {
-    Console.print("<주문 메뉴>");
-    // ...
+import { Console } from "@woowacourse/mission-utils";
+import { INFORMATION_MESSAGE } from "./constants/index.js";
+
+const OutputView = Object.freeze({
+  // 기본 안내 메시지
+  greetingMessage() {
+    Console.print(INFORMATION_MESSAGE.GREETING);
   },
-  // ...
+
+  eventMessage() {
+    Console.print(INFORMATION_MESSAGE.EVENT);
+  },
 });
+
+export default OutputView;
