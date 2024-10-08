@@ -17,8 +17,8 @@ const Validation = {
    */
   menus(input) {
     const menuSet = new Set();
-    const allDishes = Object.values(MENU).flatMap((category) => Object.keys(category));
-    const baverages = Object.keys(MENU["음료"]);
+    const allDishes = Object.values(MENU).flatMap((category) => category.map((item) => item.name));
+    const baverages = MENU.baverage.map((item) => item.name);
     let menuCount = 0;
 
     for (const menu of input) {
@@ -30,7 +30,7 @@ const Validation = {
       menuCount += Number(count);
     }
     if (input.length !== menuSet.size) throw new Error(ERROR_MESSAGES.INVALID_MENU);
-    if (![...menuSet].some((menu) => !baverages.includes(menu)))
+    if (![...menuSet].some((dish) => !baverages.includes(dish)))
       throw new Error(ERROR_MESSAGES.INVALID_MENU);
     if (menuCount > 20) throw new Error(ERROR_MESSAGES.INVALID_MENU);
   },
