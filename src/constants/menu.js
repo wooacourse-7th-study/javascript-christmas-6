@@ -1,3 +1,4 @@
+/** 사용자가 주문할 수 있는 메뉴 목록 */
 export const MENU = Object.freeze({
   appetizer: [
     { name: "양송이수프", price: 6000 },

@@ -6,8 +6,11 @@ import { MENU } from "./constants/menu.js";
 import { EVENT, EVENT_DAYS, OFFER_MENU } from "./constants/event.js";
 
 class App {
+  /** 방문 예정 날짜 @type {number} */
   #date;
+  /** 주문 메뉴 @type {Map<string, string>} */
   #menusMap;
+
   #totalAmount = 0;
   #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false };
   #totalDiscountAmount = 0;
@@ -30,6 +33,7 @@ class App {
     OutputView.printEventBadge(this.#totalDiscountAmount);
   }
 
+  /** 날짜를 입력받고 this.#date에 날짜를 number형으로 저장합니다. */
   async #getDate() {
     try {
       const date = await InputView.readDate();
@@ -41,6 +45,7 @@ class App {
     }
   }
 
+  /** 주문할 메뉴를 입력받고 this.#menusMap에 메뉴를 Map<메뉴, 개수> 형식으로 저장합니다. */
   async #getMenus() {
     try {
       const menus = await InputView.readMenus();
@@ -52,6 +57,7 @@ class App {
     }
   }
 
+  /** 주문 받은 메뉴를 기반으로 할인 전 총 주문금액을 구합니다. */
   #getTotalAmount() {
     const allMenuPrice = {};
     Object.values(MENU).forEach((category) =>
@@ -63,11 +69,16 @@ class App {
     });
   }
 
+  /**
+   * 증정 이벤트 여부를 구합니다.
+   * @returns {boolean}
+   */
   #getOffer() {
     if (this.#totalAmount >= OFFER_MENU.applyPoint) return true;
     return false;
   }
 
+  /** 적용될 할인 혜택을 구하고 this.#discount 객체에 담습니다. */
   #getDiscount() {
     if (this.#discount <= EVENT_DAYS.CHRISTMAS) {
       this.#discount.christmas = EVENT.CHRISTMAS.calculate(this.#date);
@@ -85,6 +96,10 @@ class App {
     }
   }
 
+  /**
+   * 평일/주말 이벤트의 경우, 몇개의 메뉴가 할인 적용에 해당하는지 구합니다.
+   * @returns {number}
+   */
   #calculateWeekDiscount(targetMenus) {
     let count = 0;
     for (const [dish, num] of this.#menusMap.entries()) {
@@ -93,6 +108,10 @@ class App {
     return count;
   }
 
+  /**
+   * 최종 할인 혜택 금액을 구합니다.
+   * @returns {number}
+   */
   #calculateTotalDiscountAmount() {
     let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
     if (this.#discount.special) total += EVENT.SPECIAL.calculate;
@@ -100,6 +119,10 @@ class App {
     return total;
   }
 
+  /**
+   * 할인 혜택이 적용되었을 때 최종 금액을 구합니다.
+   * @returns {number}
+   */
   #calculateFinalAmount() {
     return this.#totalAmount - this.#totalDiscountAmount;
   }
