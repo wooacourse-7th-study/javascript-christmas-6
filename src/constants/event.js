@@ -25,3 +25,9 @@ export const EVENT_BADGE = Object.freeze({
   tree: { name: "트리", amount: 10000 },
   santa: { name: "산타", amount: 20000 },
 });
+
+export const EVENT_DAYS = Object.freeze({
+  CHRISTMAS: 25,
+  WEEKENDS: [1, 2, 8, 9, 15, 16, 22, 23, 29, 30],
+  SPECIAL: [3, 10, 17, 24, 25, 31],
+});

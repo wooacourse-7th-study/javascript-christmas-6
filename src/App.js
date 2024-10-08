@@ -3,7 +3,7 @@ import InputView from "./InputView.js";
 import Validation from "./validation.js";
 import OutputView from "./OutputView.js";
 import { MENU } from "./constants/menu.js";
-import { EVENT, OFFER_MENU } from "./constants/event.js";
+import { EVENT, EVENT_DAYS, OFFER_MENU } from "./constants/event.js";
 
 class App {
   #date;
@@ -69,31 +69,19 @@ class App {
   }
 
   #getDiscount() {
-    if (this.#discount <= 25) this.#discount.christmas = EVENT.CHRISTMAS.calculate(this.#date);
+    if (this.#discount <= EVENT_DAYS.CHRISTMAS) {
+      this.#discount.christmas = EVENT.CHRISTMAS.calculate(this.#date);
+    }
 
-    if (
-      (this.#date >= 3 && this.#date <= 7) ||
-      (this.#date >= 10 && this.#date <= 14) ||
-      (this.#date >= 17 && this.#date <= 21) ||
-      (this.#date >= 24 && this.#date <= 28) ||
-      this.#date === 31
-    ) {
-      const desserts = MENU.dessert.map((item) => item.name);
-      const count = this.#calculateWeekDiscount(desserts);
-      this.#discount.weekdays = EVENT.WEEKDAYS.calculate(count);
-      if (
-        this.#date === 3 ||
-        this.#date === 10 ||
-        this.#date === 17 ||
-        this.#date === 24 ||
-        this.#date === 25 ||
-        this.#date === 31
-      )
-        this.#discount.special = true;
-    } else {
+    if (EVENT_DAYS.WEEKENDS.includes(this.#date)) {
       const mains = MENU.main.map((item) => item.name);
       const count = this.#calculateWeekDiscount(mains);
       this.#discount.weekends = EVENT.WEEKENDS.calculate(count);
+    } else {
+      const desserts = MENU.dessert.map((item) => item.name);
+      const count = this.#calculateWeekDiscount(desserts);
+      this.#discount.weekdays = EVENT.WEEKDAYS.calculate(count);
+      if (EVENT_DAYS.SPECIAL.includes(this.#date)) this.#discount.special = true;
     }
   }
 
