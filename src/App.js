@@ -9,6 +9,7 @@ class App {
 		OutputView.printStartHello()
 		let visitDate = await this.controller.visitDateInputProcess()
 		const menu = await this.controller.menuInputProcess()
+		OutputView.printResultHello(visitDate)
 	}
 }
 const app = new App()
