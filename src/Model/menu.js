@@ -1,4 +1,5 @@
 import MENULIST from '../Constants/MENULIST.js'
+
 class Menu {
 	getMenu(inputMenu) {
 		let getMenu = []

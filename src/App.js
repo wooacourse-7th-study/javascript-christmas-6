@@ -1,6 +1,7 @@
+import Controller from './Controller/controller.js'
 import OutputView from './views/OutputView.js'
+
 class App {
-  async run() {}
 	constructor() {
 		this.controller = new Controller()
 	}
@@ -11,10 +12,10 @@ class App {
 		const menu = await this.controller.menuInputProcess()
 		OutputView.printResultHello(visitDate)
 		OutputView.printMenu(menu)
+		this.controller.orderProcess(menu, visitDate)
 	}
 }
 const app = new App()
 app.run()
 
-export default App;
 export default App

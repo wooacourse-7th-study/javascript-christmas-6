@@ -1,6 +1,9 @@
 import { Console } from '@woowacourse/mission-utils'
 import Validate from '../utils/validate.js'
 import InputView from '../Views/inputView.js'
+import Menu from '../Model/menu.js'
+import OutputView from '../views/OutputView.js'
+
 class Controller {
 	constructor() {
 		this.validation = new Validate()
@@ -30,5 +33,8 @@ class Controller {
 		}
 	}
 
+	//주문에 대한 로직
+	orderProcess(menu, visitDate) {
+	}
 }
 export default Controller
