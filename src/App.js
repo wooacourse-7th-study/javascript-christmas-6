@@ -3,7 +3,7 @@ import InputView from "./InputView.js";
 import Validation from "./validation.js";
 import OutputView from "./OutputView.js";
 import { MENU } from "./constants/menu.js";
-import { OFFER_MENU } from "./constants/event.js";
+import { EVENT, OFFER_MENU } from "./constants/event.js";
 
 class App {
   #date;
@@ -69,7 +69,7 @@ class App {
   }
 
   #getDiscount() {
-    if (this.#discount <= 25) this.#discount.christmas = 1000 + (this.#date - 1) * 100;
+    if (this.#discount <= 25) this.#discount.christmas = EVENT.CHRISTMAS.calculate(this.#date);
 
     if (
       (this.#date >= 3 && this.#date <= 7) ||
@@ -80,7 +80,7 @@ class App {
     ) {
       const desserts = MENU.dessert.map((item) => item.name);
       const count = this.#calculateWeekDiscount(desserts);
-      this.#discount.weekdays = 2023 * count;
+      this.#discount.weekdays = EVENT.WEEKDAYS.calculate(count);
       if (
         this.#date === 3 ||
         this.#date === 10 ||
@@ -93,7 +93,7 @@ class App {
     } else {
       const mains = MENU.main.map((item) => item.name);
       const count = this.#calculateWeekDiscount(mains);
-      this.#discount.weekends = 2023 * count;
+      this.#discount.weekends = EVENT.WEEKENDS.calculate(count);
     }
   }
 
@@ -107,7 +107,7 @@ class App {
 
   #calculateTotalDiscountAmount() {
     let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
-    if (this.#discount.special) total += 1000;
+    if (this.#discount.special) total += EVENT.SPECIAL.calculate;
     if (this.#getOffer()) total += OFFER_MENU.price;
     return total;
   }
