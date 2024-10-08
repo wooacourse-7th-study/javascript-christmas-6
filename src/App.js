@@ -1,11 +1,13 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 import Validation from "./validation.js";
+import OutputView from "./OutputView.js";
 
 class App {
   async run() {
     await this.#getDate();
     await this.#getMenus();
+    OutputView.printDate(this.date);
   }
 
   async #getDate() {
