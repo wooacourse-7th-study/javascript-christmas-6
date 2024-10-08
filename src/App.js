@@ -2,13 +2,14 @@ import { Console } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 import Validation from "./validation.js";
 import OutputView from "./OutputView.js";
-import { MENU } from "./constants/menu.js";
+import { BENEFIT_MENU, MENU } from "./constants/menu.js";
 
 class App {
   #date;
   #menusMap;
   #totalAmount = 0;
   #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false };
+  #totalDiscountAmount = 0;
 
   async run() {
     await this.#getDate();
@@ -20,6 +21,8 @@ class App {
     OutputView.printOffer(this.#getOffer());
     this.#getDiscount();
     OutputView.printDiscount(this.#discount, this.#getOffer());
+    this.#totalDiscountAmount = this.#calculateTotalDiscountAmount();
+    OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
   }
 
   async #getDate() {
@@ -95,6 +98,13 @@ class App {
       if (targetMenus.includes(dish)) count += num;
     }
     return count;
+  }
+
+  #calculateTotalDiscountAmount() {
+    let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
+    if (this.#discount.special) total += 1000;
+    if (this.#getOffer()) total += BENEFIT_MENU.price;
+    return total;
   }
 }
 

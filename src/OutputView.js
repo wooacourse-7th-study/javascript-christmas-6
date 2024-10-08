@@ -71,6 +71,15 @@ const OutputView = {
     }
     if (isNoBenefit) Console.print("없음");
   },
+
+  /**
+   * 총 할인 금액을 출력합니다.
+   * @param {number} amount
+   */
+  printTotalDiscountAmount(amount) {
+    Console.print(OUTPUT_MESSAGES.TOTAL_BENEFIT);
+    Console.print(`${amount.toLocaleString()}원`);
+  },
 };
 
 export default OutputView;
