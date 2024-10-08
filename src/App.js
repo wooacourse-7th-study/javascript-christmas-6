@@ -8,6 +8,7 @@ class App {
   #date;
   #menusMap;
   #totalAmount = 0;
+  #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false };
 
   async run() {
     await this.#getDate();
@@ -17,6 +18,8 @@ class App {
     this.#getTotalAmount();
     OutputView.printTotalAmount(this.#totalAmount);
     OutputView.printOffer(this.#getOffer());
+    this.#getDiscount();
+    OutputView.printDiscount(this.#discount, this.#getOffer());
   }
 
   async #getDate() {
@@ -55,6 +58,43 @@ class App {
   #getOffer() {
     if (this.#totalAmount >= 120000) return true;
     return false;
+  }
+
+  #getDiscount() {
+    if (this.#discount <= 25) this.#discount.christmas = 1000 + (this.#date - 1) * 100;
+
+    if (
+      (this.#date >= 3 && this.#date <= 7) ||
+      (this.#date >= 10 && this.#date <= 14) ||
+      (this.#date >= 17 && this.#date <= 21) ||
+      (this.#date >= 24 && this.#date <= 28) ||
+      this.#date === 31
+    ) {
+      const desserts = MENU.dessert.map((item) => item.name);
+      const count = this.#calculateWeekDiscount(desserts);
+      this.#discount.weekdays = 2023 * count;
+      if (
+        this.#date === 3 ||
+        this.#date === 10 ||
+        this.#date === 17 ||
+        this.#date === 24 ||
+        this.#date === 25 ||
+        this.#date === 31
+      )
+        this.#discount.special = true;
+    } else {
+      const mains = MENU.main.map((item) => item.name);
+      const count = this.#calculateWeekDiscount(mains);
+      this.#discount.weekends = 2023 * count;
+    }
+  }
+
+  #calculateWeekDiscount(targetMenus) {
+    let count = 0;
+    for (const [dish, num] of this.#menusMap.entries()) {
+      if (targetMenus.includes(dish)) count += num;
+    }
+    return count;
   }
 }
 

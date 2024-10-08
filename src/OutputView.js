@@ -40,6 +40,37 @@ const OutputView = {
     if (isOffer) Console.print(BENEFIT_MENU.string);
     else Console.print("없음");
   },
+
+  /**
+   * 할인 내역을 출력합니다.
+   * @param {Object} discount
+   * @param {boolean} isOffer
+   */
+  printDiscount(discount, isOffer) {
+    let isNoBenefit = true;
+    Console.print(OUTPUT_MESSAGES.BENEFIT);
+    if (discount.christmas !== 0) {
+      Console.print(`크리스마스 디데이 할인: -${discount.christmas.toLocaleString()}원`);
+      isNoBenefit = false;
+    }
+    if (discount.weekdays !== 0) {
+      Console.print(`평일 할인: -${discount.weekdays.toLocaleString()}원`);
+      isNoBenefit = false;
+    }
+    if (discount.weekends !== 0) {
+      Console.print(`주말 할인: -${discount.weekends.toLocaleString()}원`);
+      isNoBenefit = false;
+    }
+    if (discount.special) {
+      Console.print(`특별 할인: -1,000원`);
+      isNoBenefit = false;
+    }
+    if (isOffer) {
+      Console.print(`증정 이벤트: -${BENEFIT_MENU.price.toLocaleString()}원`);
+      isNoBenefit = false;
+    }
+    if (isNoBenefit) Console.print("없음");
+  },
 };
 
 export default OutputView;
