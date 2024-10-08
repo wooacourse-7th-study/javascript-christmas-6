@@ -20,6 +20,15 @@ const OutputView = {
   printDate(date) {
     Console.print(OUTPUT_MESSAGES.DATE(date));
   },
+
+  /**
+   * 총 주문 금액을 출력합니다.
+   * @param {number} amount
+   */
+  printTotalAmount(amount) {
+    Console.print(OUTPUT_MESSAGES.TOTAL_BEFORE_EVENT);
+    Console.print(`${amount.toLocaleString()}원`);
+  },
 };
 
 export default OutputView;
