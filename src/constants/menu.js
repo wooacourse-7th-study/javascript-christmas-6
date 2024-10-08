@@ -20,5 +20,3 @@ export const MENU = Object.freeze({
     { name: "샴페인", price: 25000 },
   ],
 });
-
-export const BENEFIT_MENU = Object.freeze({ string: "샴페인 1개", price: 25000 });

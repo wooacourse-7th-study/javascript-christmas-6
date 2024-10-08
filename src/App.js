@@ -2,7 +2,8 @@ import { Console } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 import Validation from "./validation.js";
 import OutputView from "./OutputView.js";
-import { BENEFIT_MENU, MENU } from "./constants/menu.js";
+import { MENU } from "./constants/menu.js";
+import { OFFER_MENU } from "./constants/event.js";
 
 class App {
   #date;
@@ -107,7 +108,7 @@ class App {
   #calculateTotalDiscountAmount() {
     let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
     if (this.#discount.special) total += 1000;
-    if (this.#getOffer()) total += BENEFIT_MENU.price;
+    if (this.#getOffer()) total += OFFER_MENU.price;
     return total;
   }
 

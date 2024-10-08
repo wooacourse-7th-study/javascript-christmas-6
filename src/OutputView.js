@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "./constants/messages.js";
-import { BENEFIT_MENU } from "./constants/menu.js";
+import { OFFER_MENU, EVENT } from "./constants/event.js";
 
 const OutputView = {
   /**
@@ -37,7 +37,7 @@ const OutputView = {
    */
   printOffer(isOffer) {
     Console.print(OUTPUT_MESSAGES.EVENT_OFFER);
-    if (isOffer) Console.print(BENEFIT_MENU.string);
+    if (isOffer) Console.print(OFFER_MENU.string);
     else Console.print("없음");
   },
 
@@ -50,23 +50,23 @@ const OutputView = {
     let isNoBenefit = true;
     Console.print(OUTPUT_MESSAGES.BENEFIT);
     if (discount.christmas !== 0) {
-      Console.print(`크리스마스 디데이 할인: -${discount.christmas.toLocaleString()}원`);
+      Console.print(EVENT.CHRISTMAS.string(discount.christmas));
       isNoBenefit = false;
     }
     if (discount.weekdays !== 0) {
-      Console.print(`평일 할인: -${discount.weekdays.toLocaleString()}원`);
+      Console.print(EVENT.WEEKDAYS.string(discount.weekdays));
       isNoBenefit = false;
     }
     if (discount.weekends !== 0) {
-      Console.print(`주말 할인: -${discount.weekends.toLocaleString()}원`);
+      Console.print(EVENT.WEEKENDS.string(discount.weekends));
       isNoBenefit = false;
     }
     if (discount.special) {
-      Console.print(`특별 할인: -1,000원`);
+      Console.print(EVENT.SPECIAL.string);
       isNoBenefit = false;
     }
     if (isOffer) {
-      Console.print(`증정 이벤트: -${BENEFIT_MENU.price.toLocaleString()}원`);
+      Console.print(EVENT.OFFER.string);
       isNoBenefit = false;
     }
     if (isNoBenefit) Console.print("없음");
