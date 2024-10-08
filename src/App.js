@@ -10,6 +10,7 @@ class App {
   #totalAmount = 0;
   #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false };
   #totalDiscountAmount = 0;
+  #finalAmount = 0;
 
   async run() {
     await this.#getDate();
@@ -23,6 +24,8 @@ class App {
     OutputView.printDiscount(this.#discount, this.#getOffer());
     this.#totalDiscountAmount = this.#calculateTotalDiscountAmount();
     OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
+    this.#finalAmount = this.#calculateFinalAmount();
+    OutputView.printFinalAmount(this.#finalAmount);
   }
 
   async #getDate() {
@@ -105,6 +108,10 @@ class App {
     if (this.#discount.special) total += 1000;
     if (this.#getOffer()) total += BENEFIT_MENU.price;
     return total;
+  }
+
+  #calculateFinalAmount() {
+    return this.#totalAmount - this.#totalDiscountAmount;
   }
 }
 

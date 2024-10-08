@@ -80,6 +80,15 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.TOTAL_BENEFIT);
     Console.print(`${amount.toLocaleString()}원`);
   },
+
+  /**
+   * 할인 후 예상 금액을 출력합니다.
+   * @param {number} amount
+   */
+  printFinalAmount(amount) {
+    Console.print(OUTPUT_MESSAGES.TOTAL_AFTER_EVENT);
+    Console.print(`${amount.toLocaleString()}원`);
+  },
 };
 
 export default OutputView;
