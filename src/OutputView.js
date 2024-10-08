@@ -2,9 +2,15 @@ import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "./constants/messages.js";
 
 const OutputView = {
-  printMenu() {
-    Console.print("<주문 메뉴>");
-    // ...
+  /**
+   * 주문한 메뉴를 출력합니다.
+   * @param {Map([string, string])} menuMap
+   */
+  printMenu(menuMap) {
+    Console.print(OUTPUT_MESSAGES.MENU);
+    menuMap.forEach((count, dish) => {
+      Console.print(`${dish} ${count}개`);
+    });
   },
 
   /**

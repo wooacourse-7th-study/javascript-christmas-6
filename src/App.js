@@ -8,6 +8,7 @@ class App {
     await this.#getDate();
     await this.#getMenus();
     OutputView.printDate(this.date);
+    OutputView.printMenu(this.menusMap);
   }
 
   async #getDate() {
@@ -25,7 +26,7 @@ class App {
     try {
       const menus = await InputView.readMenus();
       Validation.menus(menus);
-      this.menus = menus;
+      this.menusMap = new Map(menus.map((menu) => menu.split("-")));
     } catch (error) {
       Console.print(error.message);
       await this.#getMenus();
