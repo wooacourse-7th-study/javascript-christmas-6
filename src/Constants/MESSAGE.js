@@ -3,6 +3,10 @@ export const MESSAGE = {
 	HELLO_RESULT: visitDate =>
 		`12월 ${visitDate}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n`,
 
+	HEAD_MENU: '<주문 메뉴>',
+
+	ORDERED_MEUELIST: menu => `${menu.name} ${menu.count}개`,
+}
 
 export const ASK = {
 	MENU_COUNT:
