@@ -51,6 +51,14 @@ class Controller {
 	orderProcess(menu, visitDate) {
 		const beforeDiscountPrice = this.#getBeforeDiscount(menu)
 		const isGiftPresent = this.#getPresent(beforeDiscountPrice)
+
+		const getBenefits = this.benefit.getBenefit(
+			visitDate,
+			menu,
+			beforeDiscountPrice,
+		)
+		const { totalBenefit } = getBenefits
+
 	}
 }
 export default Controller

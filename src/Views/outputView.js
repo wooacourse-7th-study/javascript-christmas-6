@@ -1,5 +1,7 @@
 import { Console } from '@woowacourse/mission-utils'
 import { MESSAGE } from '../Constants/MESSAGE.js'
+import getMoneyComma from '../utils/getMoneyComma.js'
+
 const OutputView = {
 	printStartHello() {
 		Console.print(MESSAGE.HELLO_START)
@@ -21,5 +23,23 @@ const OutputView = {
 	printGiftPresent(isGiftPresent) {
 		Console.print(MESSAGE.HEAD_GIFT_PRESENT + MESSAGE.PRINT_GIFT(isGiftPresent))
 	},
+	printBenefit(getBenefits) {
+		const {
+			DdayMoney,
+			weekdayOrweekendMoney,
+			starMoney,
+			isGiftPresent,
+			totalBenefit,
+			dateIndex,
+		} = getBenefits
+
+		const isWeekdayOrWeekend =
+			dateIndex > 4 ? MESSAGE.PRINT_WEEKDAY : MESSAGE.PRINT_WEEKEND
+		Console.print(MESSAGE.HEAD_BENEFIT)
+
+		DdayMoney > 0 &&
+			Console.print(MESSAGE.PRINT_D_DAY + getMoneyComma(DdayMoney))
+	},
+
 }
 export default OutputView
