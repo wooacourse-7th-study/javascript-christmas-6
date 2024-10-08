@@ -16,6 +16,13 @@ class Benefit {
 				? this.#getWeekdayBenefit(menu)
 				: this.#getWeekendBenefit(menu) //4이상이면 주말
 
+		const starMoney = this.#getStarBenefit(dateIndex, visitDate)
+
+		const totalBenefit = this.#getTotalBenefit(
+			DdayMoney,
+			weekdayOrweekendMoney,
+			starMoney,
+		)
 		return {
 			DdayMoney,
 			weekdayOrweekendMoney,
@@ -60,5 +67,13 @@ class Benefit {
 		return weekendTotal
 	}
 
+	#getStarBenefit(dateIndex, visitDate) {
+		if (dateIndex === 0) return 1000
+		if (visitDate === 25) return 1000
+		return 0
+	}
+	#getTotalBenefit(DdayBenefitMoney, weekdayOrweekendMoney, starMoney) {
+		return DdayBenefitMoney + weekdayOrweekendMoney + starMoney
+	}
 }
 export default Benefit
