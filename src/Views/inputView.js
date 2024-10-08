@@ -6,6 +6,10 @@ const InputView = {
 		const input = await Console.readLineAsync(ASK.VISIT_DAY)
 		return input
 	},
+	async menuAndCount() {
+		const input = await Console.readLineAsync(ASK.MENU_COUNT)
+		return input.split(',')
+	},
 }
 
 export default InputView

@@ -1,4 +1,6 @@
 import { ERROR } from '../Constants/MESSAGE.js'
+import MENULIST from '../Constants/MENULIST.js'
+
 class Validate {
 	//방문 날짜 validate
 	inputVisitDate(date) {
@@ -7,6 +9,14 @@ class Validate {
 		return date
 	}
 
+	//주문 validate
+	inputOrder(menuList) {
+		for (const menu of menuList) {
+			this.#isNotValue(menu)
+			this.#isNotSameMenu(menu)
+		}
+		return menuList
+	}
 
 	#isVisitDateRange(date) {
 		if (date < 1 || 31 < date) {
@@ -19,5 +29,21 @@ class Validate {
 		}
 	}
 
+	#isNotValue(menu) {
+		if (isNaN(menu.count) || menu.count <= 0 || 20 < menu.count) {
+			throw new Error(ERROR.ORDER_MENU)
+		}
+	}
+	#isNotSameMenu(menu) {
+		let isNotSameMenu = true
+		MENULIST.forEach(menulist => {
+			if (menulist.name === menu.name) {
+				isNotSameMenu = false
+			}
+		})
+		if (isNotSameMenu) {
+			throw new Error(ERROR.ORDER_MENU)
+		}
+	}
 }
 export default Validate
