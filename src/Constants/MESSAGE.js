@@ -5,6 +5,8 @@ export const MESSAGE = {
 
 	HEAD_MENU: '<주문 메뉴>',
 	HEAD_BEFORE_DISCOUNT: '\n<할인 전 총주문 금액>',
+	HEAD_GIFT_PRESENT: '<증정 메뉴>\n',
+	PRINT_GIFT: isGiftPresent => (isGiftPresent ? '샴페인 1개' : '없음') + '\n',
 
 	ORDERED_MEUELIST: menu => `${menu.name} ${menu.count}개`,
 }

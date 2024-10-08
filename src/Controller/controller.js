@@ -4,11 +4,13 @@ import InputView from '../Views/inputView.js'
 import Menu from '../Model/menu.js'
 import OutputView from '../views/OutputView.js'
 import getMoneyComma from '../utils/getMoneyComma.js'
+import Benefit from '../Model/benefit.js'
 
 class Controller {
 	constructor() {
 		this.validation = new Validate()
 		this.menu = new Menu()
+		this.benefit = new Benefit()
 	}
 
 	//방문 날짜 받기
@@ -39,9 +41,16 @@ class Controller {
 		OutputView.printBeforDiscount(getMoneyComma(beforeDiscountPrice))
 		return beforeDiscountPrice
 	}
+	#getPresent(beforeDiscountPrice) {
+		const isGiftPresent = this.benefit.getPresent(beforeDiscountPrice)
+		OutputView.printGiftPresent(isGiftPresent)
+		return isGiftPresent
+	}
+
 	//주문에 대한 로직
 	orderProcess(menu, visitDate) {
 		const beforeDiscountPrice = this.#getBeforeDiscount(menu)
+		const isGiftPresent = this.#getPresent(beforeDiscountPrice)
 	}
 }
 export default Controller

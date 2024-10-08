@@ -18,5 +18,8 @@ const OutputView = {
 		Console.print(MESSAGE.HEAD_BEFORE_DISCOUNT)
 		Console.print(`${beforeDiscountPrice}\n`)
 	},
+	printGiftPresent(isGiftPresent) {
+		Console.print(MESSAGE.HEAD_GIFT_PRESENT + MESSAGE.PRINT_GIFT(isGiftPresent))
+	},
 }
 export default OutputView
