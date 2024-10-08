@@ -39,6 +39,15 @@ const OutputView = {
 
 		DdayMoney > 0 &&
 			Console.print(MESSAGE.PRINT_D_DAY + getMoneyComma(DdayMoney))
+
+		weekdayOrweekendMoney > 0 &&
+			Console.print(isWeekdayOrWeekend + getMoneyComma(weekdayOrweekendMoney))
+		starMoney > 0 &&
+			Console.print(MESSAGE.PRINT_SPECIAL + getMoneyComma(starMoney))
+		isGiftPresent &&
+			Console.print(MESSAGE.PRINT_GIFT_EVENT + getMoneyComma(25000))
+		totalBenefit === 0 && Console.print(MESSAGE.DATA_ZERO)
+	},
 	},
 
 }
