@@ -64,7 +64,7 @@ class App {
   }
 
   #getOffer() {
-    if (this.#totalAmount >= 120000) return true;
+    if (this.#totalAmount >= OFFER_MENU.applyPoint) return true;
     return false;
   }
 

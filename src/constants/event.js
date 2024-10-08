@@ -1,4 +1,4 @@
-export const OFFER_MENU = Object.freeze({ string: "샴페인 1개", price: 25000 });
+export const OFFER_MENU = Object.freeze({ string: "샴페인 1개", price: 25000, applyPoint: 120000 });
 
 export const EVENT = Object.freeze({
   CHRISTMAS: {
