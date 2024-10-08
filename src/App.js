@@ -16,6 +16,7 @@ class App {
     OutputView.printMenu(this.#menusMap);
     this.#getTotalAmount();
     OutputView.printTotalAmount(this.#totalAmount);
+    OutputView.printOffer(this.#getOffer());
   }
 
   async #getDate() {
@@ -49,6 +50,11 @@ class App {
     this.#menusMap.forEach((count, dish) => {
       this.#totalAmount += allMenuPrice[dish] * count;
     });
+  }
+
+  #getOffer() {
+    if (this.#totalAmount >= 120000) return true;
+    return false;
   }
 }
 

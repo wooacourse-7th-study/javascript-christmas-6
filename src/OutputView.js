@@ -29,6 +29,16 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.TOTAL_BEFORE_EVENT);
     Console.print(`${amount.toLocaleString()}원`);
   },
+
+  /**
+   * 증정 메뉴 제공 여부에 따라 결과를 출력합니다.
+   * @param {boolean} isOffer
+   */
+  printOffer(isOffer) {
+    Console.print(OUTPUT_MESSAGES.EVENT_OFFER);
+    if (isOffer) Console.print("샴페인 1개");
+    else Console.print("없음");
+  },
 };
 
 export default OutputView;
