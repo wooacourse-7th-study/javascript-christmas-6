@@ -17,10 +17,12 @@ const Validation = {
    */
   menus(input) {
     const menuSet = new Set();
+    const allDishes = Object.values(MENU).flatMap((category) => Object.keys(category));
+
     for (const menu of input) {
       const [dish, count] = menu.split("-");
       if (!dish || !count) throw new Error(ERROR_MESSAGES.INVALID_MENU);
-      if (!MENU[dish]) throw new Error(ERROR_MESSAGES.INVALID_MENU);
+      if (!allDishes.includes(dish)) throw new Error(ERROR_MESSAGES.INVALID_MENU);
       if (count < 1) throw new Error(ERROR_MESSAGES.INVALID_MENU);
       menuSet.add(dish);
     }
