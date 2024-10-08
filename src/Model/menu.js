@@ -14,5 +14,13 @@ class Menu {
 		return getMenu
 	}
 
+	getBeforeDiscountPrice(menu) {
+		let beforeDisCountPrice = 0
+		menu.forEach(menu => {
+			beforeDisCountPrice += menu.price * menu.count
+		})
+		return beforeDisCountPrice
+	}
+
 }
 export default Menu

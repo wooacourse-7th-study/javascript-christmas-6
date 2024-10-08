@@ -3,6 +3,7 @@ import Validate from '../utils/validate.js'
 import InputView from '../Views/inputView.js'
 import Menu from '../Model/menu.js'
 import OutputView from '../views/OutputView.js'
+import getMoneyComma from '../utils/getMoneyComma.js'
 
 class Controller {
 	constructor() {
@@ -33,8 +34,14 @@ class Controller {
 		}
 	}
 
+	#getBeforeDiscount(menu) {
+		const beforeDiscountPrice = this.menu.getBeforeDiscountPrice(menu)
+		OutputView.printBeforDiscount(getMoneyComma(beforeDiscountPrice))
+		return beforeDiscountPrice
+	}
 	//주문에 대한 로직
 	orderProcess(menu, visitDate) {
+		const beforeDiscountPrice = this.#getBeforeDiscount(menu)
 	}
 }
 export default Controller
