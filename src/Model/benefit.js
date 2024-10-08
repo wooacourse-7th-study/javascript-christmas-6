@@ -10,6 +10,12 @@ class Benefit {
 			}
 		const dateIndex = this.#getDayOfWeek(visitDate)
 		const DdayMoney = this.#getD_Day(visitDate)
+
+		const weekdayOrweekendMoney =
+			dateIndex <= 4
+				? this.#getWeekdayBenefit(menu)
+				: this.#getWeekendBenefit(menu) //4이상이면 주말
+
 		return {
 			DdayMoney,
 			weekdayOrweekendMoney,
@@ -30,6 +36,28 @@ class Benefit {
 	#getD_Day(visitDate) {
 		let DdayBenefitMoney = 1000
 		return (DdayBenefitMoney += (visitDate - 1) * 100)
+	}
+
+	#getWeekdayBenefit(menu) {
+		let weekdayTotal = 0
+		let weekdayBenefit = 2023
+		menu.forEach(menu => {
+			if (menu.category === 'dessert') {
+				weekdayTotal += menu.count * weekdayBenefit
+			}
+		})
+
+		return weekdayTotal
+	}
+	#getWeekendBenefit(menu) {
+		let weekendTotal = 0
+		let weekendBenefit = 2023
+		menu.forEach(menu => {
+			if (menu.category === 'main') {
+				weekendTotal += menu.count * weekendBenefit
+			}
+		})
+		return weekendTotal
 	}
 
 }

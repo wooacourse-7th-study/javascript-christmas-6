@@ -22,5 +22,15 @@ class Menu {
 		return beforeDisCountPrice
 	}
 
+	#getFindMenu(name, count, getMenu) {
+		const matchedMenu = MENULIST.find(list => list.name === name)
+
+		if (matchedMenu) {
+			getMenu.push({
+				...matchedMenu,
+				count: count,
+			})
+		}
+	}
 }
 export default Menu
