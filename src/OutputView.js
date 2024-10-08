@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "./constants/messages.js";
-import { OFFER_MENU, EVENT } from "./constants/event.js";
+import { OFFER_MENU, EVENT, EVENT_BADGE } from "./constants/event.js";
 
 const OutputView = {
   /**
@@ -92,9 +92,10 @@ const OutputView = {
 
   printEventBadge(totalDiscountAmount) {
     Console.print(OUTPUT_MESSAGES.EVENT_BADGE);
-    if (totalDiscountAmount < 5000) Console.print("없음");
-    else if (totalDiscountAmount < 10000) Console.print("별");
-    else if (totalDiscountAmount < 20000) Console.print("산타");
+    if (totalDiscountAmount >= EVENT_BADGE.santa.amount) Console.print(EVENT_BADGE.santa.name);
+    else if (totalDiscountAmount >= EVENT_BADGE.tree.amount) Console.print(EVENT_BADGE.tree.name);
+    else if (totalDiscountAmount >= EVENT_BADGE.star.amount) Console.print(EVENT_BADGE.star.name);
+    else Console.print("없음");
   },
 };
 

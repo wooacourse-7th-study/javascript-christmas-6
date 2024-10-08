@@ -19,3 +19,9 @@ export const EVENT = Object.freeze({
     calculate: OFFER_MENU.price,
   },
 });
+
+export const EVENT_BADGE = Object.freeze({
+  star: { name: "별", amount: 5000 },
+  tree: { name: "트리", amount: 10000 },
+  santa: { name: "산타", amount: 20000 },
+});
