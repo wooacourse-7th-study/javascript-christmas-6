@@ -62,6 +62,16 @@ const OutputView = {
 				getMoneyComma(beforeDiscountPrice - totalBenefit),
 		)
 	},
+	printBadge(totalBenefit, isGiftPresent) {
+		const totalPrice = isGiftPresent ? totalBenefit + 25000 : totalBenefit
 
+		Console.print(MESSAGE.HEAD_EVENT_BADGE)
+
+		if (totalPrice >= 20000) return Console.print(MESSAGE.SANTA)
+		if (totalPrice >= 10000) return Console.print(MESSAGE.TREE)
+		if (totalPrice >= 5000) return Console.print(MESSAGE.STAR)
+
+		Console.print(MESSAGE.DATA_ZERO)
+	},
 }
 export default OutputView

@@ -18,6 +18,11 @@ export const MESSAGE = {
 	PRINT_GIFT_EVENT: '증정 이벤트: -',
 	PRINT_GIFT: isGiftPresent => (isGiftPresent ? '샴페인 1개' : '없음') + '\n',
 
+	DATA_ZERO: '없음',
+	SANTA: '산타',
+	TREE: '트리',
+	STAR: '별',
+
 	ORDERED_MEUELIST: menu => `${menu.name} ${menu.count}개`,
 }
 
