@@ -26,6 +26,7 @@ class App {
     OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
     this.#finalAmount = this.#calculateFinalAmount();
     OutputView.printFinalAmount(this.#finalAmount);
+    OutputView.printEventBadge(this.#totalDiscountAmount);
   }
 
   async #getDate() {

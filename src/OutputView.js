@@ -89,6 +89,13 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.TOTAL_AFTER_EVENT);
     Console.print(`${amount.toLocaleString()}원`);
   },
+
+  printEventBadge(totalDiscountAmount) {
+    Console.print(OUTPUT_MESSAGES.EVENT_BADGE);
+    if (totalDiscountAmount < 5000) Console.print("없음");
+    else if (totalDiscountAmount < 10000) Console.print("별");
+    else if (totalDiscountAmount < 20000) Console.print("산타");
+  },
 };
 
 export default OutputView;
