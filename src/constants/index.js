@@ -58,3 +58,4 @@ export const MENUS = Object.freeze({
 });
 
 export const DRINKS = ["제로콜라", "레드와인", "샴페인"];
+export const ONE_CHAMPAGNE = "샴페인 1개";
