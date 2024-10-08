@@ -1,5 +1,7 @@
 import InputView from "./InputView.js";
 import OutputView from "./OutputView.js";
+import { getOriginalOrderPrice } from "./utils.js";
+import { TITLE_MESSAGE } from "./constants/index.js";
 
 class App {
   async run() {
@@ -17,6 +19,10 @@ class App {
 
     // 주문 메뉴 출력
     OutputView.printMenus(orderMenus);
+
+    //할인 전 가격 출력
+    const originalPrice = getOriginalOrderPrice(orderMenus);
+    OutputView.printPrice(TITLE_MESSAGE.ORIGINAL_PRICE, originalPrice);
   }
 }
 

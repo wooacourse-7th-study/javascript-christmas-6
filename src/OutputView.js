@@ -15,6 +15,11 @@ const OutputView = Object.freeze({
     Console.print(TITLE_MESSAGE.MENU);
     Console.print(orderMenu.map(({ menu, count }) => `${menu} ${count}개`).join("\n"));
   },
+
+  printPrice(title, price) {
+    Console.print(title);
+    Console.print(`${price.toLocaleString()}원`);
+  },
 });
 
 export default OutputView;
