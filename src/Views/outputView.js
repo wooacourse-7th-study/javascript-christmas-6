@@ -48,6 +48,19 @@ const OutputView = {
 			Console.print(MESSAGE.PRINT_GIFT_EVENT + getMoneyComma(25000))
 		totalBenefit === 0 && Console.print(MESSAGE.DATA_ZERO)
 	},
+
+	printTotalBenefit(totalBenefit, isGiftPresent) {
+		const totalPrice = isGiftPresent ? totalBenefit + 25000 : totalBenefit
+		Console.print(
+			MESSAGE.HEAD_PRICE +
+				getMoneyComma(totalPrice === 0 ? totalPrice : -totalPrice),
+		)
+	},
+	printAtferDiscount(beforeDiscountPrice, totalBenefit) {
+		Console.print(
+			MESSAGE.HEAD_AFTER_DISCOUNT +
+				getMoneyComma(beforeDiscountPrice - totalBenefit),
+		)
 	},
 
 }

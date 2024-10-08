@@ -5,7 +5,17 @@ export const MESSAGE = {
 
 	HEAD_MENU: '<주문 메뉴>',
 	HEAD_BEFORE_DISCOUNT: '\n<할인 전 총주문 금액>',
+	HEAD_PRICE: '\n<총혜택 금액>\n',
+	HEAD_AFTER_DISCOUNT: '\n<할인 후 예상 결제 금액>\n',
+	HEAD_EVENT_BADGE: '\n<12월 이벤트 배지>',
+	HEAD_BENEFIT: '<혜택 내역>',
 	HEAD_GIFT_PRESENT: '<증정 메뉴>\n',
+
+	PRINT_WEEKDAY: '평일 할인: -',
+	PRINT_WEEKEND: '주말 할인: -',
+	PRINT_D_DAY: '크리스마스 디데이 할인: -',
+	PRINT_SPECIAL: '특별 할인: -',
+	PRINT_GIFT_EVENT: '증정 이벤트: -',
 	PRINT_GIFT: isGiftPresent => (isGiftPresent ? '샴페인 1개' : '없음') + '\n',
 
 	ORDERED_MEUELIST: menu => `${menu.name} ${menu.count}개`,

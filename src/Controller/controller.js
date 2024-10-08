@@ -60,6 +60,7 @@ class Controller {
 		const { totalBenefit } = getBenefits
 
 		OutputView.printBenefit(getBenefits)
+		OutputView.printTotalBenefit(totalBenefit, isGiftPresent)
 	}
 }
 export default Controller
