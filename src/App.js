@@ -1,6 +1,13 @@
 import InputView from "./InputView.js";
 import OutputView from "./OutputView.js";
-import { getOriginalOrderPrice, isGiftEventTarget } from "./utils.js";
+import {
+  getOriginalOrderPrice,
+  isGiftEventTarget,
+  getDayEventDiscount,
+  getChristmasEventDiscount,
+  isWeekend,
+  isSpecialEventDay,
+} from "./utils.js";
 import { TITLE_MESSAGE } from "./constants/index.js";
 
 class App {
@@ -27,6 +34,13 @@ class App {
     // 증정 메뉴 출력
     const isGiftEvent = isGiftEventTarget(originalPrice);
     OutputView.printGiftEvent(isGiftEvent);
+
+    // 혜택 할인 적용, 출력
+    const christmasDiscount = getChristmasEventDiscount(visitDate);
+    const isWeekendDate = isWeekend(visitDate);
+    const dayDiscount = getDayEventDiscount(isWeekendDate, orderMenus);
+    const isSpecialDate = isSpecialEventDay(visitDate);
+    OutputView.printBenefit(christmasDiscount, isWeekendDate, dayDiscount, isGiftEvent, isSpecialDate);
   }
 }
 

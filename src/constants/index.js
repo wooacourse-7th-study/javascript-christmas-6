@@ -13,7 +13,7 @@ export const TITLE_MESSAGE = Object.freeze({
   ORIGINAL_PRICE: "\n<할인 전 총주문 금액>",
   GIFT: "\n<증정 메뉴>",
   BENEFIT: "\n<혜택 내역>",
-  BENEFIT_PRICE: "\n<총혜택 내역>",
+  BENEFIT_PRICE: "\n<총혜택 금액>",
   FINAL_PRICE: "\n<할인 후 예상 결제 금액>",
   EVENT_BADGE: "\n<12월 이벤트 배지>",
 });
@@ -21,6 +21,14 @@ export const TITLE_MESSAGE = Object.freeze({
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_DATE: "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.\n",
   INVALID_ORDER: "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.\n",
+});
+
+export const BENEFIT_MESSAGE = Object.freeze({
+  CHRISTMAS: "크리스마스 디데이 할인:",
+  WEEKDAYS: "평일 할인:",
+  WEEKEND: "주말 할인:",
+  SPECIAL: "특별 할인:",
+  GIFT: "증정 이벤트:",
 });
 
 export const BENEFIT_PRICE = Object.freeze({
@@ -47,7 +55,7 @@ export const MENUS = Object.freeze({
   타파스: 5500,
   시저샐러드: 8000,
   티본스테이크: 55000,
-  바베큐립: 54000,
+  바비큐립: 54000,
   해산물파스타: 35000,
   크리스마스파스타: 25000,
   초코케이크: 15000,
@@ -57,5 +65,9 @@ export const MENUS = Object.freeze({
   샴페인: 25000,
 });
 
+export const MAIN_MENUS = ["티본스테이크", "바비큐립", "해산물파스타", "크리스마스파스타"];
+export const DESSERTS = ["초코케이크", "아이스크림"];
 export const DRINKS = ["제로콜라", "레드와인", "샴페인"];
 export const ONE_CHAMPAGNE = "샴페인 1개";
+export const WEEKENDS = [1, 2, 8, 9, 15, 16, 22, 23, 29, 30];
+export const SPECIAL_DAYS = [3, 10, 17, 24, 25, 31];
