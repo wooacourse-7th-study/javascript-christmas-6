@@ -5,6 +5,7 @@ import Validation from "./validation.js";
 class App {
   async run() {
     await this.#getDate();
+    await this.#getMenus();
   }
 
   async #getDate() {
@@ -15,6 +16,17 @@ class App {
     } catch (error) {
       Console.print(error.message);
       await this.#getDate();
+    }
+  }
+
+  async #getMenus() {
+    try {
+      const menus = await InputView.readMenus();
+      Validation.menus(menus);
+      this.menus = menus;
+    } catch (error) {
+      Console.print(error.message);
+      await this.#getMenus();
     }
   }
 }

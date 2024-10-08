@@ -6,6 +6,10 @@ const InputView = {
     const input = await Console.readLineAsync(INPUT_MESSAGES.VISIT_DATE);
     return input;
   },
-  // ...
+
+  async readMenus() {
+    const input = await Console.readLineAsync(INPUT_MESSAGES.MENU);
+    return input.split(",");
+  },
 };
 export default InputView;
