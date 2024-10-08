@@ -2,7 +2,7 @@ import { Console } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 import Validation from "./validation.js";
 import OutputView from "./OutputView.js";
-import MENU from "./constants/menu.js";
+import { MENU } from "./constants/menu.js";
 
 class App {
   #date;

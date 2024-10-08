@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "./constants/messages.js";
+import { BENEFIT_MENU } from "./constants/menu.js";
 
 const OutputView = {
   /**
@@ -36,7 +37,7 @@ const OutputView = {
    */
   printOffer(isOffer) {
     Console.print(OUTPUT_MESSAGES.EVENT_OFFER);
-    if (isOffer) Console.print("샴페인 1개");
+    if (isOffer) Console.print(BENEFIT_MENU.string);
     else Console.print("없음");
   },
 };

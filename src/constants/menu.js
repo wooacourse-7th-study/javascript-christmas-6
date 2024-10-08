@@ -1,4 +1,4 @@
-const MENU = Object.freeze({
+export const MENU = Object.freeze({
   appetizer: [
     { name: "양송이수프", price: 6000 },
     { name: "타파스", price: 5500 },
@@ -21,4 +21,4 @@ const MENU = Object.freeze({
   ],
 });
 
-export default MENU;
+export const BENEFIT_MENU = Object.freeze({ string: "샴페인 1개", price: 25000 });

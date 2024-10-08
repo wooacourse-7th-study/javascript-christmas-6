@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES } from "./constants/messages.js";
-import MENU from "./constants/menu.js";
+import { MENU } from "./constants/menu.js";
 
 const Validation = {
   /**
