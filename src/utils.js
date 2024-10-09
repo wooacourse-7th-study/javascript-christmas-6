@@ -1,4 +1,14 @@
-import { MENUS, BENEFIT_PRICE, DECEMBER, WEEKENDS, SPECIAL_DAYS, DESSERTS, MAIN_MENUS } from "./constants/index.js";
+import {
+  MENUS,
+  BENEFIT_PRICE,
+  DECEMBER,
+  WEEKENDS,
+  SPECIAL_DAYS,
+  DESSERTS,
+  MAIN_MENUS,
+  BADGES,
+  NOTHING_MESSAGE,
+} from "./constants/index.js";
 
 export const getOriginalOrderPrice = (orderMenus) => {
   return orderMenus.reduce((acc, { menu, count }) => acc + MENUS[menu] * count, 0);
@@ -57,9 +67,25 @@ export const getDiscountPrice = (christmasDiscount, dayDiscount, isGiftEvent, is
     discountPrice += BENEFIT_PRICE.THOUSAND;
   }
 
-  return -discountPrice;
+  return discountPrice;
 };
 
 export const getTotalPrice = (originalPrice, discountPrice) => {
-  return originalPrice + discountPrice;
+  return originalPrice - discountPrice;
+};
+
+export const getBadge = (discountPrice) => {
+  if (discountPrice >= BENEFIT_PRICE.TWENTY_THOUSAND) {
+    return BADGES.SANTA;
+  }
+
+  if (discountPrice >= BENEFIT_PRICE.TEN_THOUSAND) {
+    return BADGES.TREE;
+  }
+
+  if (discountPrice >= BENEFIT_PRICE.FIVE_THOUSAND) {
+    return BADGES.STAR;
+  }
+
+  return NOTHING_MESSAGE;
 };

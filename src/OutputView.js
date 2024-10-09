@@ -66,6 +66,10 @@ const OutputView = Object.freeze({
       Console.print(`${BENEFIT_MESSAGE.SPECIAL} -${BENEFIT_PRICE.THOUSAND.toLocaleString()}원`);
     }
   },
+  printBadge(badge) {
+    Console.print(TITLE_MESSAGE.EVENT_BADGE);
+    Console.print(badge);
+  },
 });
 
 export default OutputView;

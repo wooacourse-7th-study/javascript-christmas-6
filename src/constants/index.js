@@ -71,3 +71,9 @@ export const DRINKS = ["제로콜라", "레드와인", "샴페인"];
 export const ONE_CHAMPAGNE = "샴페인 1개";
 export const WEEKENDS = [1, 2, 8, 9, 15, 16, 22, 23, 29, 30];
 export const SPECIAL_DAYS = [3, 10, 17, 24, 25, 31];
+
+export const BADGES = Object.freeze({
+  STAR: "별",
+  TREE: "트리",
+  SANTA: "산타",
+});
