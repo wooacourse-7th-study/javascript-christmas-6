@@ -1,4 +1,8 @@
-import { DECEMBER, MENUS, MAX_MENU_COUNT, DRINKS } from "./constants/index.js";
+import { DECEMBER, MENUS, MAX_MENU_COUNT, DRINKS } from "../constants/index.js";
+
+export const isNumberValidate = (visitDate) => {
+  return isNaN(visitDate);
+};
 
 export const isVisitDateValidate = (visitDate) => {
   return DECEMBER.FIRST > visitDate || DECEMBER.LAST < visitDate;

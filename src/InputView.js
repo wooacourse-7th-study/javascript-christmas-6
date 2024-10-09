@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGE, ERROR_MESSAGE } from "./constants/index.js";
-import { isVisitDateValidate, isOrderValidate } from "./validate.js";
+import { isVisitDateValidate, isOrderValidate, isNumberValidate } from "./utils/index.js";
 
 const InputView = Object.freeze({
   async getVisitDateInput() {
@@ -8,6 +8,10 @@ const InputView = Object.freeze({
       try {
         const input = await Console.readLineAsync(INPUT_MESSAGE.DATE);
         const visitDate = Number(input);
+
+        if (isNumberValidate(visitDate)) {
+          throw new Error(ERROR_MESSAGE.INVALID_DATE);
+        }
 
         if (isVisitDateValidate(visitDate)) {
           throw new Error(ERROR_MESSAGE.INVALID_DATE);
@@ -30,11 +34,10 @@ const InputView = Object.freeze({
           throw new Error(ERROR_MESSAGE.INVALID_ORDER);
         }
 
-        const totalMenus = orderMenus.map((orderMenu) => {
+        return orderMenus.map((orderMenu) => {
           const [menu, count] = orderMenu.split("-");
           return { menu, count: Number(count) };
         });
-        return totalMenus;
       } catch (error) {
         Console.print(error.message);
       }

@@ -16,7 +16,7 @@ import { TITLE_MESSAGE } from "./constants/index.js";
 class App {
   async run() {
     // 인사 메세지
-    OutputView.greetingMessage();
+    // OutputView.greetingMessage();
 
     // 날짜 입력 받기
     const visitDate = await InputView.getVisitDateInput();
