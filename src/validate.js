@@ -1,4 +1,4 @@
-import { DECEMBER, MENUS, MAX_COUNT, DRINKS } from "./constants/index.js";
+import { DECEMBER, MENUS, MAX_MENU_COUNT, DRINKS } from "./constants/index.js";
 
 export const isVisitDateValidate = (visitDate) => {
   return DECEMBER.FIRST > visitDate || DECEMBER.LAST < visitDate;
@@ -9,7 +9,7 @@ const isLessThanOne = (number) => {
 };
 
 const isOverMaxCount = (number) => {
-  return number > MAX_COUNT;
+  return number > MAX_MENU_COUNT;
 };
 
 export const isOrderValidate = (orderMenus) => {
