@@ -10,7 +10,7 @@ import {
   getDiscountPrice,
   getTotalPrice,
   getBadge,
-} from "./utils.js";
+} from "./utils/index.js";
 import { TITLE_MESSAGE } from "./constants/index.js";
 
 class App {
