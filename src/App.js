@@ -3,20 +3,18 @@ import OutputView from "./OutputView.js";
 import {
   getOriginalOrderPrice,
   isGiftEventTarget,
-  getDayEventDiscount,
-  getChristmasEventDiscount,
   isWeekend,
   isSpecialEventDay,
-  getDiscountPrice,
   getTotalPrice,
   getBadge,
+  benefitController,
 } from "./utils/index.js";
 import { TITLE_MESSAGE } from "./constants/index.js";
 
 class App {
   async run() {
     // 인사 메세지
-    // OutputView.greetingMessage();
+    OutputView.greetingMessage();
 
     // 날짜 입력 받기
     const visitDate = await InputView.getVisitDateInput();
@@ -39,22 +37,31 @@ class App {
     OutputView.printGiftEvent(isGiftEvent);
 
     // 혜택 할인 적용, 출력
-    const christmasDiscount = getChristmasEventDiscount(visitDate);
-    const isWeekendDate = isWeekend(visitDate);
-    const dayDiscount = getDayEventDiscount(isWeekendDate, orderMenus);
-    const isSpecialDate = isSpecialEventDay(visitDate);
-    OutputView.printBenefit(christmasDiscount, isWeekendDate, dayDiscount, isGiftEvent, isSpecialDate);
+    const {
+      getBenefitDiscounts,
+      setChristmasBenefit,
+      setDayBenefit,
+      setSpecialBenefit,
+      setGiftBenefit,
+      getTotalDiscount,
+    } = benefitController();
+
+    setChristmasBenefit(visitDate); // 크리스마스 디데이 이벤트
+    setDayBenefit(isWeekend(visitDate), orderMenus); // 주말, 평일 이벤트
+    setSpecialBenefit(isSpecialEventDay(visitDate)); // 특별 이벤트
+    setGiftBenefit(isGiftEvent); // 증정 이벤트
+    OutputView.printBenefit(getBenefitDiscounts());
 
     // 총 혜택 금액 출력
-    const discountPrice = getDiscountPrice(christmasDiscount, dayDiscount, isGiftEvent, isSpecialDate);
-    OutputView.printPrice(TITLE_MESSAGE.BENEFIT_PRICE, -discountPrice);
+    const totalDiscount = getTotalDiscount();
+    OutputView.printPrice(TITLE_MESSAGE.BENEFIT_PRICE, -totalDiscount);
 
     // 할인 후 예샹 결제 금액 출력
-    const totalPrice = getTotalPrice(originalPrice, discountPrice);
+    const totalPrice = getTotalPrice(originalPrice, totalDiscount);
     OutputView.printPrice(TITLE_MESSAGE.FINAL_PRICE, totalPrice);
 
     // 12월 이벤트 배지 출력
-    const badge = getBadge(discountPrice);
+    const badge = getBadge(totalDiscount);
     OutputView.printBadge(badge);
   }
 }
