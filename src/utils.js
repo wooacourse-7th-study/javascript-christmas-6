@@ -13,7 +13,7 @@ export const getChristmasEventDiscount = (visitDate) => {
     return 0;
   }
 
-  return -((visitDate - 1) * BENEFIT_PRICE.HUNDRED + BENEFIT_PRICE.THOUSAND);
+  return (visitDate - 1) * BENEFIT_PRICE.HUNDRED + BENEFIT_PRICE.THOUSAND;
 };
 
 export const isWeekend = (visitDate) => {
@@ -37,9 +37,25 @@ export const isSpecialEventDay = (visitDate) => {
 export const getDayEventDiscount = (isWeekend, orderMenus) => {
   if (isWeekend) {
     const mainMenuCount = getCategoryMenuCount(MAIN_MENUS, orderMenus);
-    return -(mainMenuCount * BENEFIT_PRICE.YEAR);
+    return mainMenuCount * BENEFIT_PRICE.YEAR;
   }
 
   const dessertMenuCount = getCategoryMenuCount(DESSERTS, orderMenus);
-  return -(dessertMenuCount * BENEFIT_PRICE.YEAR);
+  return dessertMenuCount * BENEFIT_PRICE.YEAR;
+};
+
+export const getDiscountPrice = (christmasDiscount, dayDiscount, isGiftEvent, isSpecialDate) => {
+  let discountPrice = 0;
+  discountPrice += christmasDiscount;
+  discountPrice += dayDiscount;
+
+  if (isGiftEvent) {
+    discountPrice += BENEFIT_PRICE.GIFT;
+  }
+
+  if (isSpecialDate) {
+    discountPrice += BENEFIT_PRICE.THOUSAND;
+  }
+
+  return -discountPrice;
 };

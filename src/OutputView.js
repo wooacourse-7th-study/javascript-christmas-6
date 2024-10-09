@@ -49,17 +49,17 @@ const OutputView = Object.freeze({
     }
 
     if (christmasDiscount) {
-      Console.print(`${BENEFIT_MESSAGE.CHRISTMAS} ${christmasDiscount.toLocaleString()}원`);
+      Console.print(`${BENEFIT_MESSAGE.CHRISTMAS} -${christmasDiscount.toLocaleString()}원`);
     }
 
     if (dayDiscount) {
       Console.print(
-        `${isWeekend ? BENEFIT_MESSAGE.WEEKEND : BENEFIT_MESSAGE.WEEKDAYS} ${dayDiscount.toLocaleString()}원`
+        `${isWeekend ? BENEFIT_MESSAGE.WEEKEND : BENEFIT_MESSAGE.WEEKDAYS} -${dayDiscount.toLocaleString()}원`
       );
     }
 
     if (isGiftEvent) {
-      Console.print(`${BENEFIT_MESSAGE.GIFT} -${MENUS["샴페인"].toLocaleString()}원`);
+      Console.print(`${BENEFIT_MESSAGE.GIFT} -${BENEFIT_PRICE.GIFT.toLocaleString()}원`);
     }
 
     if (isSpecialDate) {

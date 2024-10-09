@@ -7,6 +7,7 @@ import {
   getChristmasEventDiscount,
   isWeekend,
   isSpecialEventDay,
+  getDiscountPrice,
 } from "./utils.js";
 import { TITLE_MESSAGE } from "./constants/index.js";
 
@@ -41,6 +42,10 @@ class App {
     const dayDiscount = getDayEventDiscount(isWeekendDate, orderMenus);
     const isSpecialDate = isSpecialEventDay(visitDate);
     OutputView.printBenefit(christmasDiscount, isWeekendDate, dayDiscount, isGiftEvent, isSpecialDate);
+
+    // 총 혜택 금액 출력
+    const discountPrice = getDiscountPrice(christmasDiscount, dayDiscount, isGiftEvent, isSpecialDate);
+    OutputView.printPrice(TITLE_MESSAGE.BENEFIT_PRICE, discountPrice);
   }
 }
 
