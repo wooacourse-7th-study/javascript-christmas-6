@@ -54,7 +54,7 @@ class App {
 
     // 총 혜택 금액 출력
     const totalDiscount = getTotalDiscount();
-    OutputView.printPrice(TITLE_MESSAGE.BENEFIT_PRICE, -totalDiscount);
+    OutputView.printPrice(TITLE_MESSAGE.BENEFIT_PRICE, totalDiscount === 0 ? 0 : -totalDiscount);
 
     // 할인 후 예샹 결제 금액 출력
     const totalPrice = getTotalPrice(originalPrice, totalDiscount);

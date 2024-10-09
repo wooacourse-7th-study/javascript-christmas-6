@@ -1,4 +1,4 @@
-import { DECEMBER, BENEFIT_PRICE, MAIN_MENUS, DESSERTS, BENEFIT_MESSAGE } from "../constants/index.js";
+import { DECEMBER, BENEFIT_PRICE, MAIN_MENUS, DESSERTS, BENEFIT_MESSAGE, MENUS } from "../constants/index.js";
 import { getCategoryMenuCount } from "./event.js";
 
 const benefitController = () => {
@@ -8,6 +8,12 @@ const benefitController = () => {
     [BENEFIT_MESSAGE.WEEKEND]: 0,
     [BENEFIT_MESSAGE.SPECIAL]: 0,
     [BENEFIT_MESSAGE.GIFT]: 0,
+  };
+
+  const setInit = () => {
+    Object.keys(benefitDiscounts).forEach((key) => {
+      benefitDiscounts[key] = 0;
+    });
   };
 
   const getBenefitDiscounts = () => {
@@ -45,7 +51,7 @@ const benefitController = () => {
   // 증정 할인
   const setGiftBenefit = (isGiftEvent) => {
     if (isGiftEvent) {
-      benefitDiscounts[BENEFIT_MESSAGE.GIFT] = BENEFIT_PRICE.GIFT;
+      benefitDiscounts[BENEFIT_MESSAGE.GIFT] = MENUS.샴페인;
     }
   };
 
@@ -55,6 +61,7 @@ const benefitController = () => {
   };
 
   return {
+    setInit,
     getBenefitDiscounts,
     setChristmasBenefit,
     setDayBenefit,
