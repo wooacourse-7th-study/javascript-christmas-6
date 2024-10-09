@@ -8,6 +8,7 @@ import {
   isWeekend,
   isSpecialEventDay,
   getDiscountPrice,
+  getTotalPrice,
 } from "./utils.js";
 import { TITLE_MESSAGE } from "./constants/index.js";
 
@@ -46,6 +47,10 @@ class App {
     // 총 혜택 금액 출력
     const discountPrice = getDiscountPrice(christmasDiscount, dayDiscount, isGiftEvent, isSpecialDate);
     OutputView.printPrice(TITLE_MESSAGE.BENEFIT_PRICE, discountPrice);
+
+    // 할인 후 예샹 결제 금액 출력
+    const totalPrice = getTotalPrice(originalPrice, discountPrice);
+    OutputView.printPrice(TITLE_MESSAGE.FINAL_PRICE, totalPrice);
   }
 }
 

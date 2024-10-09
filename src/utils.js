@@ -59,3 +59,7 @@ export const getDiscountPrice = (christmasDiscount, dayDiscount, isGiftEvent, is
 
   return -discountPrice;
 };
+
+export const getTotalPrice = (originalPrice, discountPrice) => {
+  return originalPrice + discountPrice;
+};
