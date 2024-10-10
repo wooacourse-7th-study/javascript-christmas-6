@@ -21,11 +21,11 @@ class App {
     await this.#getMenus();
     OutputView.printDate(this.#date);
     OutputView.printMenu(this.#menusMap);
-    this.#getTotalAmount();
+    this.#calculateTotalAmount();
     OutputView.printTotalAmount(this.#totalAmount);
-    OutputView.printOffer(this.#getOffer());
+    OutputView.printOffer(this.#isOffer());
     this.#getDiscount();
-    OutputView.printDiscount(this.#discount, this.#getOffer());
+    OutputView.printDiscount(this.#discount, this.#isOffer());
     this.#totalDiscountAmount = this.#calculateTotalDiscountAmount();
     OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
     this.#finalAmount = this.#calculateFinalAmount();
@@ -58,7 +58,7 @@ class App {
   }
 
   /** 주문 받은 메뉴를 기반으로 할인 전 총 주문금액을 구합니다. */
-  #getTotalAmount() {
+  #calculateTotalAmount() {
     const allMenuPrice = {};
     Object.values(MENU).forEach((category) =>
       Object.entries(category).forEach(([_i, { name, price }]) => (allMenuPrice[name] = price))
@@ -73,7 +73,7 @@ class App {
    * 증정 이벤트 여부를 구합니다.
    * @returns {boolean}
    */
-  #getOffer() {
+  #isOffer() {
     if (this.#totalAmount >= OFFER_MENU.applyPoint) return true;
     return false;
   }
@@ -115,7 +115,7 @@ class App {
   #calculateTotalDiscountAmount() {
     let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
     if (this.#discount.special) total += EVENT.SPECIAL.calculate;
-    if (this.#getOffer()) total += OFFER_MENU.price;
+    if (this.#isOffer()) total += OFFER_MENU.price;
     return total;
   }
 
