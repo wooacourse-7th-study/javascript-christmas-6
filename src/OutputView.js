@@ -65,7 +65,7 @@ const OutputView = {
       Console.print(EVENT.SPECIAL.string);
       isNoBenefit = false;
     }
-    if (isOffer) {
+    if (discount.isOffer) {
       Console.print(EVENT.OFFER.string);
       isNoBenefit = false;
     }

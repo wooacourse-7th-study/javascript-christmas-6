@@ -12,7 +12,7 @@ class App {
   #menusMap;
 
   #totalAmount = 0;
-  #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false };
+  #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false, isOffer: false };
   #totalDiscountAmount = 0;
   #finalAmount = 0;
 
@@ -23,9 +23,10 @@ class App {
     OutputView.printMenu(this.#menusMap);
     this.#calculateTotalAmount();
     OutputView.printTotalAmount(this.#totalAmount);
-    OutputView.printOffer(this.#isOffer());
+    this.#discount.isOffer = this.#isOffer();
+    OutputView.printOffer(this.#discount.isOffer);
     this.#getDiscount();
-    OutputView.printDiscount(this.#discount, this.#isOffer());
+    OutputView.printDiscount(this.#discount);
     this.#totalDiscountAmount = this.#calculateTotalDiscountAmount();
     OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
     this.#finalAmount = this.#calculateFinalAmount();
@@ -115,7 +116,7 @@ class App {
   #calculateTotalDiscountAmount() {
     let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
     if (this.#discount.special) total += EVENT.SPECIAL.calculate;
-    if (this.#isOffer()) total += OFFER_MENU.price;
+    if (this.#discount.isOffer) total += OFFER_MENU.price;
     return total;
   }
 
