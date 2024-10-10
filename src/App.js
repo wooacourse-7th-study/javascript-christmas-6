@@ -17,11 +17,11 @@ class App {
   #finalAmount = 0;
 
   async run() {
-    await this.#getDate();
-    await this.#getMenus();
+    this.#date = await this.#getDate();
+    this.#menusMap = new Map(await this.#getMenus());
     OutputView.printDate(this.#date);
     OutputView.printMenu(this.#menusMap);
-    this.#calculateTotalAmount();
+    this.#totalAmount = this.#calculateTotalAmount();
     OutputView.printTotalAmount(this.#totalAmount);
     this.#discount.isOffer = this.#isOffer();
     OutputView.printOffer(this.#discount.isOffer);
@@ -39,7 +39,7 @@ class App {
     try {
       const date = await InputView.readDate();
       Validation.date(date);
-      this.#date = Number(date);
+      return Number(date);
     } catch (error) {
       Console.print(error.message);
       await this.#getDate();
@@ -51,7 +51,7 @@ class App {
     try {
       const menus = await InputView.readMenus();
       Validation.menus(menus);
-      this.#menusMap = new Map(menus.map((menu) => menu.split("-")));
+      return menus.map((menu) => menu.split("-"));
     } catch (error) {
       Console.print(error.message);
       await this.#getMenus();
@@ -65,9 +65,11 @@ class App {
       Object.entries(category).forEach(([_i, { name, price }]) => (allMenuPrice[name] = price))
     );
 
+    let totalAmount = 0;
     this.#menusMap.forEach((count, dish) => {
-      this.#totalAmount += allMenuPrice[dish] * count;
+      totalAmount += allMenuPrice[dish] * count;
     });
+    return totalAmount;
   }
 
   /**
