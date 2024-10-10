@@ -60,6 +60,7 @@ class App {
 
   /** 주문 받은 메뉴를 기반으로 할인 전 총 주문금액을 구합니다. */
   #calculateTotalAmount() {
+    // 메뉴판의 모든 메뉴와 가격을 객체 형태로 새롭게 생성
     const allMenuPrice = {};
     Object.values(MENU).forEach((category) =>
       Object.entries(category).forEach(([_i, { name, price }]) => (allMenuPrice[name] = price))
