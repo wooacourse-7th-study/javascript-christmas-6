@@ -21,6 +21,10 @@ export const isOrderValidate = (orderMenus) => {
 
   for (const orderMenu of orderMenus) {
     const [menu, count] = orderMenu.split("-");
+    if (isNumberValidate(count)) {
+      return true;
+    }
+
     // 주문 개수가 1보다 작은 경우
     if (isLessThanOne(count)) {
       return true;
