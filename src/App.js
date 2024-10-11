@@ -17,6 +17,7 @@ class App {
   #finalAmount = 0;
 
   async run() {
+    OutputView.printWelcome();
     this.#date = await this.#getDate();
     this.#menusMap = new Map(await this.#getMenus());
     OutputView.printDate(this.#date);

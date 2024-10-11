@@ -3,6 +3,10 @@ import { OUTPUT_MESSAGES } from "./constants/messages.js";
 import { OFFER_MENU, EVENT, EVENT_BADGE } from "./constants/event.js";
 
 const OutputView = {
+  /** 이벤트 시작 문구를 출력합니다. */
+  printWelcome() {
+    Console.print(OUTPUT_MESSAGES.WELCOME);
+  },
   /**
    * 주문한 메뉴를 출력합니다.
    * @param {Map([string, string])} menuMap

@@ -4,6 +4,7 @@ export const INPUT_MESSAGES = Object.freeze({
 });
 
 export const OUTPUT_MESSAGES = Object.freeze({
+  WELCOME: "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.",
   DATE: (date) => `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
   MENU: "\n<주문 메뉴>",
   TOTAL_BEFORE_EVENT: "\n<할인 전 총주문 금액>",
