@@ -12,43 +12,34 @@ import {
 } from "./menuUtils.js";
 
 class App {
-  /** 방문 예정 날짜 @type {number} */
-  #date;
-  /** 주문 메뉴 @type {Map<string, string>} */
-  #menusMap;
-
-  #totalAmount = 0;
-  #discount = { christmas: 0, week: { weekends: 0, weekdays: 0 }, special: false, isOffer: false };
-  #totalDiscountAmount = 0;
-  #finalAmount = 0;
-
   async run() {
     OutputView.printWelcome();
-    this.#date = await this.#getDate();
-    this.#menusMap = new Map(await this.#getMenus());
-    OutputView.printDate(this.#date);
-    OutputView.printMenu(this.#menusMap);
+    const date = await this.#getDate();
+    const menusMap = new Map(await this.#getMenus());
+    OutputView.printDate(date);
+    OutputView.printMenu(menusMap);
 
-    this.#totalAmount = calculateMenuTotalAmount(this.#menusMap);
-    OutputView.printTotalAmount(this.#totalAmount);
+    const totalAmount = calculateMenuTotalAmount(menusMap);
+    OutputView.printTotalAmount(totalAmount);
 
-    this.#discount.isOffer = isOffer(this.#totalAmount);
-    OutputView.printOffer(this.#discount.isOffer);
+    const discount = {};
+    discount.isOffer = isOffer(totalAmount);
+    OutputView.printOffer(discount.isOffer);
 
-    this.#discount.christmas = calculateChrismasDiscount(this.#date);
-    this.#discount.week = calculateWeekDiscount(this.#date, this.#menusMap);
-    this.#discount.special = isSpecial(this.#date);
-    OutputView.printDiscount(this.#discount);
+    discount.christmas = calculateChrismasDiscount(date);
+    discount.week = calculateWeekDiscount(date, menusMap);
+    discount.special = isSpecial(date);
+    OutputView.printDiscount(discount);
 
-    this.#totalDiscountAmount = calculateTotalDiscountAmount(this.#discount);
-    OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
+    const totalDiscountAmount = calculateTotalDiscountAmount(discount);
+    OutputView.printTotalDiscountAmount(totalDiscountAmount);
 
-    this.#finalAmount = this.#calculateFinalAmount();
-    OutputView.printFinalAmount(this.#finalAmount);
-    OutputView.printEventBadge(this.#totalDiscountAmount);
+    const finalAmount = this.#calculateFinalAmount(totalAmount, totalDiscountAmount);
+    OutputView.printFinalAmount(finalAmount);
+    OutputView.printEventBadge(totalDiscountAmount);
   }
 
-  /** 날짜를 입력받고 this.#date에 날짜를 number형으로 저장합니다. */
+  /** 날짜를 입력받고 date에 날짜를 number형으로 저장합니다. */
   async #getDate() {
     try {
       const date = await InputView.readDate();
@@ -60,7 +51,7 @@ class App {
     }
   }
 
-  /** 주문할 메뉴를 입력받고 this.#menusMap에 메뉴를 Map<메뉴, 개수> 형식으로 저장합니다. */
+  /** 주문할 메뉴를 입력받고 menusMap에 메뉴를 Map<메뉴, 개수> 형식으로 저장합니다. */
   async #getMenus() {
     try {
       const menus = await InputView.readMenus();
@@ -76,8 +67,8 @@ class App {
    * 할인 혜택이 적용되었을 때 최종 금액을 구합니다.
    * @returns {number}
    */
-  #calculateFinalAmount() {
-    return this.#totalAmount - this.#totalDiscountAmount;
+  #calculateFinalAmount(totalAmount, totalDiscountAmount) {
+    return totalAmount - totalDiscountAmount;
   }
 }
 
