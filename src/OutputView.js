@@ -41,7 +41,7 @@ const OutputView = {
    */
   printOffer(isOffer) {
     Console.print(OUTPUT_MESSAGES.EVENT_OFFER);
-    if (isOffer) Console.print(OFFER_MENU.string);
+    if (isOffer) Console.print(OFFER_MENU.STRING);
     else Console.print("없음");
   },
 

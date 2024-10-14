@@ -1,5 +1,9 @@
 /** 증정 메뉴의 출력 문자열, 가격, 기준값 */
-export const OFFER_MENU = Object.freeze({ string: "샴페인 1개", price: 25000, applyPoint: 120000 });
+export const OFFER_MENU = Object.freeze({
+  STRING: "샴페인 1개",
+  PRICE: 25000,
+  APPLY_POINT: 120000,
+});
 
 /** 이벤트 종류와 그에 대한 출력 문자열, 할인 금액 */
 export const DISCOUNT = {
@@ -18,8 +22,8 @@ export const DISCOUNT = {
   },
   SPECIAL: { STRING: `특별 할인: -1,000원`, AMOUNT: 1000 },
   OFFER: {
-    STRING: `증정 이벤트: -${OFFER_MENU.price.toLocaleString()}원`,
-    AMOUNT: OFFER_MENU.price,
+    STRING: `증정 이벤트: -${OFFER_MENU.PRICE.toLocaleString()}원`,
+    AMOUNT: OFFER_MENU.PRICE,
   },
 };
 
