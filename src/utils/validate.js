@@ -1,5 +1,6 @@
 import { ERROR } from '../Constants/MESSAGE.js'
 import MENULIST from '../Constants/MENULIST.js'
+import { Console } from '@woowacourse/mission-utils'
 
 class Validate {
 	//방문 날짜 validate
@@ -35,13 +36,8 @@ class Validate {
 		}
 	}
 	#isNotSameMenu(menu) {
-		let isNotSameMenu = true
-		MENULIST.forEach(menulist => {
-			if (menulist.name === menu.name) {
-				isNotSameMenu = false
-			}
-		})
-		if (isNotSameMenu) {
+		const isSameMenu = MENULIST.some(el => el.name === menu.name)
+		if (!isSameMenu) {
 			throw new Error(ERROR.ORDER_MENU)
 		}
 	}
