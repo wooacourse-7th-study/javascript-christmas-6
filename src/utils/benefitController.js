@@ -31,14 +31,10 @@ const benefitController = () => {
 
   // 평일, 주말 할인
   const setDayBenefit = (isWeekend, orderMenus) => {
-    if (isWeekend) {
-      const mainMenuCount = getCategoryMenuCount(MAIN_MENUS, orderMenus);
-      benefitDiscounts[BENEFIT_MESSAGE.WEEKEND] = mainMenuCount * BENEFIT_PRICE.YEAR;
-      return;
-    }
-
-    const dessertMenuCount = getCategoryMenuCount(DESSERTS, orderMenus);
-    benefitDiscounts[BENEFIT_MESSAGE.WEEKDAYS] = dessertMenuCount * BENEFIT_PRICE.YEAR;
+    const category = isWeekend ? MAIN_MENUS : DESSERTS;
+    const categoryMenuCount = getCategoryMenuCount(category, orderMenus);
+    const benefitMessage = isWeekend ? BENEFIT_MESSAGE.WEEKEND : BENEFIT_MESSAGE.WEEKDAYS;
+    benefitDiscounts[benefitMessage] = categoryMenuCount * BENEFIT_PRICE.YEAR;
   };
 
   // 특별 할인
