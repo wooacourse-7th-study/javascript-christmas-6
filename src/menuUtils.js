@@ -50,6 +50,7 @@ export function calculateWeekDiscount(date, orderMenus) {
     const mains = MENU.MAIN.map((item) => item.NAME);
     const mainCount = Array.from(orderMenus.entries()).reduce((acc, [dish, count]) => {
       if (mains.includes(dish)) return acc + count;
+      return acc;
     }, 0);
     return { weekends: mainCount * DISCOUNT.WEEKENDS.AMOUNT };
   }
@@ -57,6 +58,7 @@ export function calculateWeekDiscount(date, orderMenus) {
   const desserts = MENU.DESSERT.map((item) => item.NAME);
   const dessertCount = Array.from(orderMenus.entries()).reduce((acc, [dish, count]) => {
     if (desserts.includes(dish)) return acc + count;
+    return acc;
   }, 0);
   return { weekdays: dessertCount * DISCOUNT.WEEKDAYS.AMOUNT };
 }
