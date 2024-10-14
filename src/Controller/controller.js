@@ -38,7 +38,7 @@ class Controller {
 
 	#getBeforeDiscount(menu) {
 		const beforeDiscountPrice = this.menu.getBeforeDiscountPrice(menu)
-		OutputView.printBeforDiscount(getMoneyComma(beforeDiscountPrice))
+		OutputView.printBeforeDiscount(getMoneyComma(beforeDiscountPrice))
 		return beforeDiscountPrice
 	}
 	#getPresent(beforeDiscountPrice) {

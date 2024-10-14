@@ -16,7 +16,7 @@ const OutputView = {
 			Console.print(MESSAGE.ORDERED_MEUELIST(menu))
 		}
 	},
-	printBeforDiscount(beforeDiscountPrice) {
+	printBeforeDiscount(beforeDiscountPrice) {
 		Console.print(MESSAGE.HEAD_BEFORE_DISCOUNT)
 		Console.print(`${beforeDiscountPrice}\n`)
 	},
