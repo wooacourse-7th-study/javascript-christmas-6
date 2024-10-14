@@ -26,8 +26,7 @@ export function calculateMenuTotalAmount(menusMap) {
  * @returns {boolean}
  */
 export function isOffer(totalAmount) {
-  if (totalAmount >= OFFER_MENU.APPLY_POINT) return true;
-  return false;
+  return totalAmount >= OFFER_MENU.APPLY_POINT;
 }
 
 /**
@@ -71,8 +70,7 @@ export function calculateWeekDiscount(date, orderMenus) {
  * @returns {boolean}
  */
 export function isSpecial(date) {
-  if (EVENT_DAYS.SPECIAL.includes(date)) return true;
-  return false;
+  return EVENT_DAYS.SPECIAL.includes(date);
 }
 
 /**

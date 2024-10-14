@@ -7,8 +7,7 @@ const InputView = {
    * @returns {string}
    */
   async readDate() {
-    const input = await Console.readLineAsync(INPUT_MESSAGES.VISIT_DATE);
-    return input;
+    return await Console.readLineAsync(INPUT_MESSAGES.VISIT_DATE);
   },
 
   /**
