@@ -13,11 +13,9 @@ Object.values(MENU).forEach((category) =>
  * @return {number}
  */
 export function calculateMenuTotalAmount(menusMap) {
-  let totalAmount = 0;
-  menusMap.forEach((count, dish) => {
-    totalAmount += allMenuPrice[dish] * count;
-  });
-  return totalAmount;
+  return Array.from(menusMap.entries()).reduce((acc, [dish, count]) => {
+    return acc + allMenuPrice[dish] * count;
+  }, 0);
 }
 
 /**
@@ -49,19 +47,17 @@ export function calculateChrismasDiscount(date) {
 export function calculateWeekDiscount(date, orderMenus) {
   if (EVENT_DAYS.WEEKENDS.includes(date)) {
     const mains = MENU.MAIN.map((item) => item.NAME);
-    let count = 0;
-    for (const [dish, num] of orderMenus.entries()) {
-      if (mains.includes(dish)) count += num;
-    }
-    return { weekends: count * DISCOUNT.WEEKENDS.AMOUNT };
+    const mainCount = Array.from(orderMenus.entries()).reduce((acc, [dish, count]) => {
+      if (mains.includes(dish)) return acc + count;
+    }, 0);
+    return { weekends: mainCount * DISCOUNT.WEEKENDS.AMOUNT };
   }
 
   const desserts = MENU.DESSERT.map((item) => item.NAME);
-  let count = 0;
-  for (const [dish, num] of orderMenus.entries()) {
-    if (desserts.includes(dish)) count += num;
-  }
-  return { weekdays: count * DISCOUNT.WEEKDAYS.AMOUNT };
+  const dessertCount = Array.from(orderMenus.entries()).reduce((acc, [dish, count]) => {
+    if (desserts.includes(dish)) return acc + count;
+  }, 0);
+  return { weekdays: dessertCount * DISCOUNT.WEEKDAYS.AMOUNT };
 }
 
 /**
