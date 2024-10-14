@@ -61,7 +61,7 @@ class Controller {
 
 		OutputView.printBenefit(getBenefits)
 		OutputView.printTotalBenefit(totalBenefit, isGiftPresent)
-		OutputView.printAtferDiscount(beforeDiscountPrice, totalBenefit)
+		OutputView.printAfterDiscount(beforeDiscountPrice, totalBenefit)
 		OutputView.printBadge(totalBenefit, isGiftPresent)
 	}
 }

@@ -3,7 +3,7 @@ class Benefit {
 		if (beforeDiscountPrice < 10000)
 			return {
 				DdayMoney: 0,
-				weekdayOrweekendMoney: 0,
+				weekdayOrWeekendMoney: 0,
 				starMoney: 0,
 				totalBenefit: 0,
 				dateIndex: 0,
@@ -11,7 +11,7 @@ class Benefit {
 		const dateIndex = this.#getDayOfWeek(visitDate)
 		const DdayMoney = this.#getD_Day(visitDate)
 
-		const weekdayOrweekendMoney =
+		const weekdayOrWeekendMoney =
 			dateIndex <= 4
 				? this.#getWeekdayBenefit(menu)
 				: this.#getWeekendBenefit(menu) //4이상이면 주말
@@ -20,12 +20,12 @@ class Benefit {
 
 		const totalBenefit = this.#getTotalBenefit(
 			DdayMoney,
-			weekdayOrweekendMoney,
+			weekdayOrWeekendMoney,
 			starMoney,
 		)
 		return {
 			DdayMoney,
-			weekdayOrweekendMoney,
+			weekdayOrWeekendMoney,
 			starMoney,
 			totalBenefit,
 			dateIndex,
@@ -72,8 +72,8 @@ class Benefit {
 		if (visitDate === 25) return 1000
 		return 0
 	}
-	#getTotalBenefit(DdayBenefitMoney, weekdayOrweekendMoney, starMoney) {
-		return DdayBenefitMoney + weekdayOrweekendMoney + starMoney
+	#getTotalBenefit(DdayBenefitMoney, weekdayOrWeekendMoney, starMoney) {
+		return DdayBenefitMoney + weekdayOrWeekendMoney + starMoney
 	}
 }
 export default Benefit

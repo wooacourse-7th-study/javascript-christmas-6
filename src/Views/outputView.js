@@ -26,7 +26,7 @@ const OutputView = {
 	printBenefit(getBenefits) {
 		const {
 			DdayMoney,
-			weekdayOrweekendMoney,
+			weekdayOrWeekendMoney,
 			starMoney,
 			isGiftPresent,
 			totalBenefit,
@@ -40,8 +40,8 @@ const OutputView = {
 		DdayMoney > 0 &&
 			Console.print(MESSAGE.PRINT_D_DAY + getMoneyComma(DdayMoney))
 
-		weekdayOrweekendMoney > 0 &&
-			Console.print(isWeekdayOrWeekend + getMoneyComma(weekdayOrweekendMoney))
+		weekdayOrWeekendMoney > 0 &&
+			Console.print(isWeekdayOrWeekend + getMoneyComma(weekdayOrWeekendMoney))
 		starMoney > 0 &&
 			Console.print(MESSAGE.PRINT_SPECIAL + getMoneyComma(starMoney))
 		isGiftPresent &&
@@ -56,7 +56,7 @@ const OutputView = {
 				getMoneyComma(totalPrice === 0 ? totalPrice : -totalPrice),
 		)
 	},
-	printAtferDiscount(beforeDiscountPrice, totalBenefit) {
+	printAfterDiscount(beforeDiscountPrice, totalBenefit) {
 		Console.print(
 			MESSAGE.HEAD_AFTER_DISCOUNT +
 				getMoneyComma(beforeDiscountPrice - totalBenefit),
