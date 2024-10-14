@@ -17,8 +17,8 @@ const Validation = {
    */
   menus(input) {
     const menuSet = new Set();
-    const allDishes = Object.values(MENU).flatMap((category) => category.map((item) => item.name));
-    const baverages = MENU.baverage.map((item) => item.name);
+    const allDishes = Object.values(MENU).flatMap((category) => category.map((item) => item.NAME));
+    const baverages = MENU.BAVERAGE.map((item) => item.NAME);
     let menuCount = 0;
 
     for (const menu of input) {

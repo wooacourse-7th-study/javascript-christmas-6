@@ -4,7 +4,7 @@ import { OFFER_MENU, EVENT_DAYS, DISCOUNT } from "./constants/event.js";
 // 모든 메뉴의 이름과 금액
 const allMenuPrice = {};
 Object.values(MENU).forEach((category) =>
-  Object.entries(category).forEach(([_i, { name, price }]) => (allMenuPrice[name] = price))
+  Object.entries(category).forEach(([_i, { NAME, PRICE }]) => (allMenuPrice[NAME] = PRICE))
 );
 
 /**
@@ -49,7 +49,7 @@ export function calculateChrismasDiscount(date) {
  */
 export function calculateWeekDiscount(date, orderMenus) {
   if (EVENT_DAYS.WEEKENDS.includes(date)) {
-    const mains = MENU.main.map((item) => item.name);
+    const mains = MENU.MAIN.map((item) => item.NAME);
     let count = 0;
     for (const [dish, num] of orderMenus.entries()) {
       if (mains.includes(dish)) count += num;
@@ -57,7 +57,7 @@ export function calculateWeekDiscount(date, orderMenus) {
     return { weekends: count * DISCOUNT.WEEKENDS.AMOUNT };
   }
 
-  const desserts = MENU.dessert.map((item) => item.name);
+  const desserts = MENU.DESSERT.map((item) => item.NAME);
   let count = 0;
   for (const [dish, num] of orderMenus.entries()) {
     if (desserts.includes(dish)) count += num;
