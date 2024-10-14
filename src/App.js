@@ -46,11 +46,13 @@ class App {
       getTotalDiscount,
     } = benefitController();
 
-    setChristmasBenefit(visitDate); // 크리스마스 디데이 이벤트
-    setDayBenefit(isWeekend(visitDate), orderMenus); // 주말, 평일 이벤트
-    setSpecialBenefit(isSpecialEventDay(visitDate)); // 특별 이벤트
-    setGiftBenefit(isGiftEvent); // 증정 이벤트
-    OutputView.printBenefit(getBenefitDiscounts());
+    if (originalPrice > 10000) {
+      setChristmasBenefit(visitDate); // 크리스마스 디데이 이벤트
+      setDayBenefit(isWeekend(visitDate), orderMenus); // 주말, 평일 이벤트
+      setSpecialBenefit(isSpecialEventDay(visitDate)); // 특별 이벤트
+      setGiftBenefit(isGiftEvent); // 증정 이벤트
+      OutputView.printBenefit(getBenefitDiscounts());
+    }
 
     // 총 혜택 금액 출력
     const totalDiscount = getTotalDiscount();
