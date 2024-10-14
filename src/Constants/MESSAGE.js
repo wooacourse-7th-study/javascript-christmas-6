@@ -23,7 +23,7 @@ export const MESSAGE = {
 	TREE: '트리',
 	STAR: '별',
 
-	ORDERED_MEUELIST: menu => `${menu.name} ${menu.count}개`,
+	ORDERED_MENULIST: menu => `${menu.name} ${menu.count}개`,
 }
 
 export const ASK = {

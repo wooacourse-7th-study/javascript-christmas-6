@@ -13,7 +13,7 @@ const OutputView = {
 	printMenu(menuList) {
 		Console.print(MESSAGE.HEAD_MENU)
 		for (const menu of menuList) {
-			Console.print(MESSAGE.ORDERED_MEUELIST(menu))
+			Console.print(MESSAGE.ORDERED_MENULIST(menu))
 		}
 	},
 	printBeforeDiscount(beforeDiscountPrice) {
