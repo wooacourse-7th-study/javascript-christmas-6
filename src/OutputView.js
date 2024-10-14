@@ -97,9 +97,9 @@ const OutputView = {
 
   printEventBadge(totalDiscountAmount) {
     Console.print(OUTPUT_MESSAGES.EVENT_BADGE);
-    if (totalDiscountAmount >= EVENT_BADGE.santa.amount) Console.print(EVENT_BADGE.santa.name);
-    else if (totalDiscountAmount >= EVENT_BADGE.tree.amount) Console.print(EVENT_BADGE.tree.name);
-    else if (totalDiscountAmount >= EVENT_BADGE.star.amount) Console.print(EVENT_BADGE.star.name);
+    if (totalDiscountAmount >= EVENT_BADGE.SANTA.AMOUNT) Console.print(EVENT_BADGE.SANTA.NAME);
+    else if (totalDiscountAmount >= EVENT_BADGE.TREE.AMOUNT) Console.print(EVENT_BADGE.TREE.NAME);
+    else if (totalDiscountAmount >= EVENT_BADGE.STAR.AMOUNT) Console.print(EVENT_BADGE.STAR.NAME);
     else Console.print("없음");
   },
 };

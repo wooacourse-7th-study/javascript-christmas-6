@@ -25,9 +25,9 @@ export const DISCOUNT = {
 
 /** 이벤트 뱃지 종류와 기준값 */
 export const EVENT_BADGE = Object.freeze({
-  star: { name: "별", amount: 5000 },
-  tree: { name: "트리", amount: 10000 },
-  santa: { name: "산타", amount: 20000 },
+  STAR: { NAME: "별", AMOUNT: 5000 },
+  TREE: { NAME: "트리", AMOUNT: 10000 },
+  SANTA: { NAME: "산타", AMOUNT: 20000 },
 });
 
 /** 이벤트가 적용되는 날짜 배열 모음 */
