@@ -12,7 +12,7 @@ const OutputView = {
 	},
 	printMenu(menuList) {
 		Console.print(MESSAGE.HEAD_MENU)
-		for (let menu of menuList) {
+		for (const menu of menuList) {
 			Console.print(MESSAGE.ORDERED_MEUELIST(menu))
 		}
 	},

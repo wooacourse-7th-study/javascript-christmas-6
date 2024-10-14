@@ -5,9 +5,9 @@ class Menu {
 		let getMenu = []
 
 		inputMenu.forEach(element => {
-			let splitMenu = element.split('-')
-			let name = splitMenu[0]
-			let count = Number(splitMenu[1])
+			const splitMenu = element.split('-')
+			const name = splitMenu[0]
+			const count = Number(splitMenu[1])
 			this.#getFindMenu(name, count, getMenu)
 		})
 

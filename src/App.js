@@ -8,7 +8,7 @@ class App {
 
 	async run() {
 		OutputView.printStartHello()
-		let visitDate = await this.controller.visitDateInputProcess()
+		const visitDate = await this.controller.visitDateInputProcess()
 		const menu = await this.controller.menuInputProcess()
 		OutputView.printResultHello(visitDate)
 		OutputView.printMenu(menu)

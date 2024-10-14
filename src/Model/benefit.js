@@ -46,8 +46,8 @@ class Benefit {
 	}
 
 	#getWeekdayBenefit(menu) {
-		let weekdayTotal = 0
-		let weekdayBenefit = 2023
+		const weekdayTotal = 0
+		const weekdayBenefit = 2023
 		menu.forEach(menu => {
 			if (menu.category === 'dessert') {
 				weekdayTotal += menu.count * weekdayBenefit
@@ -58,7 +58,7 @@ class Benefit {
 	}
 	#getWeekendBenefit(menu) {
 		let weekendTotal = 0
-		let weekendBenefit = 2023
+		const weekendBenefit = 2023
 		menu.forEach(menu => {
 			if (menu.category === 'main') {
 				weekendTotal += menu.count * weekendBenefit
