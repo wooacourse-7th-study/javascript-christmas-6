@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { INPUT_MESSAGE, ERROR_MESSAGE } from "./constants/index.js";
-import { isVisitDateValidate, isOrderValidate, isNumberValidate } from "./utils/index.js";
+import { isVisitDateValidate, isOrderValidate, isNumberValidate, isDecimal } from "./utils/index.js";
 
 const InputView = Object.freeze({
   async getVisitDateInput() {
@@ -10,6 +10,10 @@ const InputView = Object.freeze({
         const visitDate = Number(input);
 
         if (isNumberValidate(visitDate)) {
+          throw new Error(ERROR_MESSAGE.INVALID_DATE);
+        }
+
+        if (isDecimal(visitDate)) {
           throw new Error(ERROR_MESSAGE.INVALID_DATE);
         }
 

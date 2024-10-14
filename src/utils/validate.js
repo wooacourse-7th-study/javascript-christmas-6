@@ -1,5 +1,9 @@
 import { DECEMBER, MENUS, MAX_MENU_COUNT, DRINKS } from "../constants/index.js";
 
+export const isDecimal = (number) => {
+  return !Number.isInteger(number);
+};
+
 export const isNumberValidate = (visitDate) => {
   return isNaN(visitDate);
 };
@@ -21,7 +25,13 @@ export const isOrderValidate = (orderMenus) => {
 
   for (const orderMenu of orderMenus) {
     const [menu, count] = orderMenu.split("-");
+    // 숫자 형식이 아닌 경우
     if (isNumberValidate(count)) {
+      return true;
+    }
+
+    // 소수점인 경우
+    if (isDecimal(Number(count))) {
       return true;
     }
 
