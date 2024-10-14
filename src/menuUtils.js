@@ -33,9 +33,10 @@ export function isOffer(totalAmount) {
  * @returns {number}
  */
 export function calculateChrismasDiscount(date) {
-  if (date <= EVENT_DAYS.CHRISTMAS) {
-    return DISCOUNT.CHRISTMAS.BASIC_DISCOUNT + (date - 1) * DISCOUNT.CHRISTMAS.ADD;
+  if (date > EVENT_DAYS.CHRISTMAS) {
+    return 0;
   }
+  return DISCOUNT.CHRISTMAS.BASIC_DISCOUNT + (date - 1) * DISCOUNT.CHRISTMAS.ADD;
 }
 
 /**
@@ -75,8 +76,7 @@ export function isSpecial(date) {
  * @returns {number}
  */
 export function calculateTotalDiscountAmount(discount) {
-  let total = 0;
-  if (discount.christmas) total += discount.christmas;
+  let total = discount.christmas;
   if (discount.week.weekends) total += discount.week.weekends;
   if (discount.week.weekdays) total += discount.week.weekdays;
   if (discount.special) total += DISCOUNT.SPECIAL.AMOUNT;
