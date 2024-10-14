@@ -81,7 +81,10 @@ export function isSpecial(date) {
  * @returns {number}
  */
 export function calculateTotalDiscountAmount(discount) {
-  let total = discount.christmas + discount.week.weekdays + discount.week.weekends;
+  let total = 0;
+  if (discount.christmas) total += discount.christmas;
+  if (discount.week.weekends) total += discount.week.weekends;
+  if (discount.week.weekdays) total += discount.week.weekdays;
   if (discount.special) total += DISCOUNT.SPECIAL.AMOUNT;
   if (discount.isOffer) total += OFFER_MENU.PRICE;
   return total;
