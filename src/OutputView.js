@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { OUTPUT_MESSAGES } from "./constants/messages.js";
-import { OFFER_MENU, EVENT, EVENT_BADGE } from "./constants/event.js";
+import { OFFER_MENU, EVENT_BADGE, DISCOUNT } from "./constants/event.js";
 
 const OutputView = {
   /** 이벤트 시작 문구를 출력합니다. */
@@ -48,32 +48,33 @@ const OutputView = {
   /**
    * 할인 내역을 출력합니다.
    * @param {Object} discount
-   * @param {boolean} isOffer
    */
-  printDiscount(discount, isOffer) {
-    let isNoBenefit = true;
+  printDiscount(discount) {
     Console.print(OUTPUT_MESSAGES.BENEFIT);
-    if (discount.christmas !== 0) {
-      Console.print(EVENT.CHRISTMAS.string(discount.christmas));
-      isNoBenefit = false;
+
+    if (
+      (!discount.christmas || discount.christmas === 0) &&
+      (!discount.week.weekdays || discount.week.weekdays === 0) &&
+      (!discount.week.weekends || discount.week.weekends === 0) &&
+      !discount.special &&
+      !discount.isOffer
+    ) {
+      Console.print("없음");
+      return;
     }
-    if (discount.weekdays !== 0) {
-      Console.print(EVENT.WEEKDAYS.string(discount.weekdays));
-      isNoBenefit = false;
-    }
-    if (discount.weekends !== 0) {
-      Console.print(EVENT.WEEKENDS.string(discount.weekends));
-      isNoBenefit = false;
-    }
-    if (discount.special) {
-      Console.print(EVENT.SPECIAL.string);
-      isNoBenefit = false;
-    }
-    if (discount.isOffer) {
-      Console.print(EVENT.OFFER.string);
-      isNoBenefit = false;
-    }
-    if (isNoBenefit) Console.print("없음");
+
+    if (discount.christmas && discount.christmas !== 0)
+      Console.print(DISCOUNT.CHRISTMAS.STRING(discount.christmas));
+
+    if (discount.week.weekdays && discount.week.weekdays !== 0)
+      Console.print(DISCOUNT.WEEKDAYS.STRING(discount.week.weekdays));
+
+    if (discount.week.weekends && discount.week.weekends !== 0)
+      Console.print(DISCOUNT.WEEKENDS.STRING(discount.week.weekends));
+
+    if (discount.special) Console.print(DISCOUNT.SPECIAL.STRING);
+
+    if (discount.isOffer) Console.print(DISCOUNT.OFFER.STRING);
   },
 
   /**

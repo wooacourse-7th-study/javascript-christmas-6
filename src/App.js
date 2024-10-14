@@ -2,8 +2,14 @@ import { Console } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 import Validation from "./validation.js";
 import OutputView from "./OutputView.js";
-import { MENU } from "./constants/menu.js";
-import { EVENT, EVENT_DAYS, OFFER_MENU } from "./constants/event.js";
+import {
+  calculateMenuTotalAmount,
+  calculateChrismasDiscount,
+  isOffer,
+  calculateWeekDiscount,
+  isSpecial,
+  calculateTotalDiscountAmount,
+} from "./menuUtils.js";
 
 class App {
   /** 방문 예정 날짜 @type {number} */
@@ -12,7 +18,7 @@ class App {
   #menusMap;
 
   #totalAmount = 0;
-  #discount = { christmas: 0, weekdays: 0, weekends: 0, special: false, isOffer: false };
+  #discount = { christmas: 0, week: { weekends: 0, weekdays: 0 }, special: false, isOffer: false };
   #totalDiscountAmount = 0;
   #finalAmount = 0;
 
@@ -22,14 +28,21 @@ class App {
     this.#menusMap = new Map(await this.#getMenus());
     OutputView.printDate(this.#date);
     OutputView.printMenu(this.#menusMap);
-    this.#totalAmount = this.#calculateTotalAmount();
+
+    this.#totalAmount = calculateMenuTotalAmount(this.#menusMap);
     OutputView.printTotalAmount(this.#totalAmount);
-    this.#discount.isOffer = this.#isOffer();
+
+    this.#discount.isOffer = isOffer(this.#totalAmount);
     OutputView.printOffer(this.#discount.isOffer);
-    this.#getDiscount();
+
+    this.#discount.christmas = calculateChrismasDiscount(this.#date);
+    this.#discount.week = calculateWeekDiscount(this.#date, this.#menusMap);
+    this.#discount.special = isSpecial(this.#date);
     OutputView.printDiscount(this.#discount);
-    this.#totalDiscountAmount = this.#calculateTotalDiscountAmount();
+
+    this.#totalDiscountAmount = calculateTotalDiscountAmount(this.#discount);
     OutputView.printTotalDiscountAmount(this.#totalDiscountAmount);
+
     this.#finalAmount = this.#calculateFinalAmount();
     OutputView.printFinalAmount(this.#finalAmount);
     OutputView.printEventBadge(this.#totalDiscountAmount);
@@ -57,71 +70,6 @@ class App {
       Console.print(error.message);
       await this.#getMenus();
     }
-  }
-
-  /** 주문 받은 메뉴를 기반으로 할인 전 총 주문금액을 구합니다. */
-  #calculateTotalAmount() {
-    // 메뉴판의 모든 메뉴와 가격을 객체 형태로 새롭게 생성
-    const allMenuPrice = {};
-    Object.values(MENU).forEach((category) =>
-      Object.entries(category).forEach(([_i, { name, price }]) => (allMenuPrice[name] = price))
-    );
-
-    let totalAmount = 0;
-    this.#menusMap.forEach((count, dish) => {
-      totalAmount += allMenuPrice[dish] * count;
-    });
-    return totalAmount;
-  }
-
-  /**
-   * 증정 이벤트 여부를 구합니다.
-   * @returns {boolean}
-   */
-  #isOffer() {
-    if (this.#totalAmount >= OFFER_MENU.applyPoint) return true;
-    return false;
-  }
-
-  /** 적용될 할인 혜택을 구하고 this.#discount 객체에 담습니다. */
-  #getDiscount() {
-    if (this.#discount <= EVENT_DAYS.CHRISTMAS) {
-      this.#discount.christmas = EVENT.CHRISTMAS.calculate(this.#date);
-    }
-
-    if (EVENT_DAYS.WEEKENDS.includes(this.#date)) {
-      const mains = MENU.main.map((item) => item.name);
-      const count = this.#calculateWeekDiscount(mains);
-      this.#discount.weekends = EVENT.WEEKENDS.calculate(count);
-    } else {
-      const desserts = MENU.dessert.map((item) => item.name);
-      const count = this.#calculateWeekDiscount(desserts);
-      this.#discount.weekdays = EVENT.WEEKDAYS.calculate(count);
-      if (EVENT_DAYS.SPECIAL.includes(this.#date)) this.#discount.special = true;
-    }
-  }
-
-  /**
-   * 평일/주말 이벤트의 경우, 몇개의 메뉴가 할인 적용에 해당하는지 구합니다.
-   * @returns {number}
-   */
-  #calculateWeekDiscount(targetMenus) {
-    let count = 0;
-    for (const [dish, num] of this.#menusMap.entries()) {
-      if (targetMenus.includes(dish)) count += num;
-    }
-    return count;
-  }
-
-  /**
-   * 최종 할인 혜택 금액을 구합니다.
-   * @returns {number}
-   */
-  #calculateTotalDiscountAmount() {
-    let total = this.#discount.christmas + this.#discount.weekdays + this.#discount.weekends;
-    if (this.#discount.special) total += EVENT.SPECIAL.calculate;
-    if (this.#discount.isOffer) total += OFFER_MENU.price;
-    return total;
   }
 
   /**
