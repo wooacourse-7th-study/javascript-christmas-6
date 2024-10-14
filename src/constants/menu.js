@@ -15,7 +15,7 @@ export const MENU = Object.freeze({
     { NAME: "초코케이크", PRICE: 15000 },
     { NAME: "아이스크림", PRICE: 5000 },
   ],
-  BAVERAGE: [
+  BEVERAGE: [
     { NAME: "제로콜라", PRICE: 3000 },
     { NAME: "레드와인", PRICE: 60000 },
     { NAME: "샴페인", PRICE: 25000 },

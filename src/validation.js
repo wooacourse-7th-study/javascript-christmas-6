@@ -17,7 +17,7 @@ const Validation = {
    */
   menus(input) {
     const menuSet = new Set();
-    const baverages = MENU.BAVERAGE.map((item) => item.NAME);
+    const baverages = MENU.BEVERAGE.map((item) => item.NAME);
     let menuCount = 0;
 
     for (const menu of input) {
